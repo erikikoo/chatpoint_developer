@@ -1,0 +1,25 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.menu-bar {
+	section  {
+		text-align: center;
+		padding: 5px 10px;
+		border: 1px solid #000;		
+	}
+}
+
+.users-index {
+	position: relative;
+	top: 30px;
+}
+
+.dropdown-menu {
+	position: absolute;
+	left: -120px !important;
+	
+	li {
+		a {text-align: right;}
+	}
+}

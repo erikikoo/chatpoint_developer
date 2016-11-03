@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dnjhexmg3
+  api_key: '249226172959829'
+  api_secret: LjsWzGb2MVjIKyGzTFgAL0LRNBw
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dnjhexmg3
+  api_key: '249226172959829'
+  api_secret: LjsWzGb2MVjIKyGzTFgAL0LRNBw
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dnjhexmg3
+  api_key: '249226172959829'
+  api_secret: LjsWzGb2MVjIKyGzTFgAL0LRNBw
+  enhance_image_tag: true
+  static_image_support: false

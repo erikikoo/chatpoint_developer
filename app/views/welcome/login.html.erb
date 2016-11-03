@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-sm-12">
+	<%= simple_form_for("logar") do |f|%>
+		<div class="form-inputs">
+			<%= f.input :password, input_html: { class: 'form-control' } %> 
+		</div>
+		<p class="">
+			<%= raw("<div class='alert alert-danger text-center'> #{@error} </div>") unless @error.nil? %>
+		</p>	
+		<%= f.button :submit, label: "Logar", class: 'btn btn-success', placeholder: 'Senha' %>
+	<% end %>
+</div>
+
+</div>
