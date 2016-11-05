@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102205754) do
+ActiveRecord::Schema.define(version: 20161105191834) do
+
+  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "chats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "identifier"
@@ -44,8 +51,9 @@ ActiveRecord::Schema.define(version: 20161102205754) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "chat_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "status",     limit: 1
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,7 +76,10 @@ ActiveRecord::Schema.define(version: 20161102205754) do
     t.string   "bairro"
     t.boolean  "is_login",                  default: false
     t.string   "avatar"
+    t.integer  "client_id"
+    t.index ["client_id"], name: "index_users_on_client_id", using: :btree
   end
 
   add_foreign_key "client_passwords", "clients"
+  add_foreign_key "users", "clients"
 end

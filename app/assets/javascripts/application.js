@@ -13,5 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-toggle
 //= require_tree .
 //= require_tree ./channels
+
+$(document).on('ready page:change', function() {
+  $('input[type="checkbox"].toggle').bootstrapToggle(); // assumes the checkboxes have the class "toggle"
+});
+

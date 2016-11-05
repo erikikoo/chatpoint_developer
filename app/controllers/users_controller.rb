@@ -5,9 +5,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path
+    @user.client_id = session[:local_id]
+    @user.is_login = true
+    if @user.save      
+      session[:user_id] = @user.id      
+      redirect_to chats_path
     else
       render 'new'
     end
@@ -15,6 +17,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password, :celular, :email, :nascimento, :cidade, :bairro, :sexo, :avatar)
+    params.require(:user).permit(:username, :password, :password_confirmation, :celular, :email, :nascimento, :cidade, :bairro, :sexo, :avatar, :client_id)
   end
 end

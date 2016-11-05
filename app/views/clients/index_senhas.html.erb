@@ -1,0 +1,7 @@
+<%= simple_form_for('new_password', url: '/gerar_senha', html: {remote: true}) do |f| %>
+	<%= f.submit "Gerar Senha" %>
+<% end %>
+<div id="new-password">
+	<%= render 'clients/password' %>
+</div>
+	

@@ -6,8 +6,12 @@ class ChatsController < ApplicationController
   
   def index
     chats = current_user.chats
-    @existing_chats_users = current_user.existing_chats_users
+    @existing_chats_users = current_user.existing_chats_users  
     @user_online = User.all
+    
+    # teste
+    #@teste = Subscribe.where(user_id: current_user.id) 
+    @mesage_no_read = Message.where.not(status: 2).count 
   end
 
   def create
@@ -35,8 +39,21 @@ class ChatsController < ApplicationController
 
   def user_online
     chats = current_user.chats
+    
     @existing_chats_users = current_user.existing_chats_users
     @user_online = User.all
+  end
+
+  def change_sexo    
+    if  params[:option] == 'm' 
+      @user_online = User.where(sexo: 'm')      
+    elsif params[:option] == 'f'
+      @user_online = User.where(sexo: 'f')      
+    elsif params[:option] == 'i'
+      @user_online = User.where(sexo: 'i')      
+    end   
+    render partial: 'online'
+     
   end
 
   private

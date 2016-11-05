@@ -1,0 +1,41 @@
+<div class="option">
+	<%= render partial: 'clients/menu_option'%>
+</div>
+
+<table class='table table-striped'>
+		
+		<thead class='text-center'>
+			<th>Cliente</th>
+			<th>Cidade</th>
+			<th>Bairro</th>
+			<th>Contato</th>
+			<th>Fone</th>
+			<th>Url</th>
+			<th>Status</th>
+			<th>usuarios online</th>
+			<th>Ações</th>
+		</thead>
+		<tbody>				
+				<% @clients.each do |client| %>
+					<% @valor = User.where(client_id: client.id ).where(is_login: true).count %>
+					<tr >	
+						<td><%= client.cliente %></td>	
+						<td><%= client.cidade %></td>	
+						<td><%= client.bairro %></td>	
+						<td><%= client.contato %></td>	
+						<td><%= client.fone %></td>	
+						<td><%= client.url %></td>	
+						<td><%= status(client.status) %></td>	
+						<td class='badge-success'><%= @valor %></td>
+						<td>
+							<%= link_to 'Editar', edit_client_path(client), remote: true  %>
+							<%= link_to 'Apagar', client_path(client), 
+						        method: :delete, 
+						        remote: true,
+						        data: { confirm: 'Deseja prosseguir?' } %>
+						</td>	
+					</tr>			
+				<% end %>			
+			
+		</tbody>
+</table>

@@ -1,0 +1,8 @@
+<%= simple_form_for("gerencia") do |f|%>
+    <%= f.input :username %> 
+    <%= f.input :password %> 
+    <%= f.button :submit, label: "Logar" %>
+<% end %>
+<div class="error">
+	<%= @error unless @error.nil? %>
+</div>

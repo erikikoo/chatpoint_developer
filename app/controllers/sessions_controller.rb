@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: login_params[:username])
     if @user && @user.authenticate(login_params[:password])
       session[:user_id] = @user.id
-      User.find(current_user.id).update_attributes(is_login: true)
+       User.find_by(params[:id]).update_attribute('is_login', true)
        #3redirect_to root_path
       redirect_to '/chats'
     else
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    User.find(current_user.id).update_attributes(is_login: false)
+    User.find_by(params[:id]).update_attribute('is_login', false)
     session.destroy
     redirect_to root_path
   end

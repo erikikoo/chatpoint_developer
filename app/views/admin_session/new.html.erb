@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-sm-offset-4 col-sm-4 text-center login-adm">
+		<%= simple_form_for(Admin.new, url: admin_session_index_path, method: :post) do |f|%>    
+	    <%= f.input :username, input_html: { class: 'form-control' } %> 
+	    <%= f.input :password, input_html: { class: 'form-control' } %> 
+	    <div class="row">
+			<p class="">
+				<%= raw("<div class='alert alert-danger text-center'> #{@error} </div>") unless @error.nil? %>
+			</p>
+		</div>
+
+	    <%= f.button :submit, as: "Logar", class: 'btn btn-success' %>
+		
+	</div>
+<% end %>	
+</div>

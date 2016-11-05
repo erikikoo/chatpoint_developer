@@ -60,3 +60,5 @@ gem 'simple_form'
 gem 'cloudinary'
 
 gem 'carrierwave'
+
+gem 'bootstrap-toggle-rails'
