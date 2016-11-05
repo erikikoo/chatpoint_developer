@@ -10,6 +10,6 @@
 		<%= f.button :submit, label: "Logar", class: 'btn btn-success', placeholder: 'Senha' %>
 	<% end %>
 </div>
-<h2>Senha <%= @login.password_digest %></h2>
+<h2>Senha <%= @login.password_digest unless @login.empty? %></h2>
 
 </div>
