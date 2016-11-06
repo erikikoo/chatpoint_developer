@@ -10,6 +10,15 @@
 		<%= f.button :submit, label: "Logar", class: 'btn btn-success', placeholder: 'Senha' %>
 	<% end %>
 </div>
-<h2>Senha <%= @login.password_digest unless @login.nil? %></h2>
+
+<p>para acessar o chat <%= @login.password_digest unless @login.nil? %></p>
+<h2><%= link_to 'Comercio/Admin', comercio_gerencia_path %></h2> 
+obs: precisa criar o mesmo no painel adm
+login: o nome do cliente<br>
+senha padrão 123456
+
+<h2><%= link_to 'Admin', admin_path %></h2>
+username: admin
+senha: 123456
 
 </div>

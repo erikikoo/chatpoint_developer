@@ -1,6 +1,10 @@
 class AdminSessionController < ApplicationController
   def new
-  	@admin = Admin.new
+  	if session[:admin_id]
+      redirect_to '/admin/principal'
+    else
+      @admin = Admin.new
+    end
   end
 
   

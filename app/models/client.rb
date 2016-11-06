@@ -5,4 +5,7 @@ class Client < ApplicationRecord
 	has_many :subscriptions
 	has_many :chats, through: :subscriptions
 	has_many :client_passwords
+
+	validates :password, confirmation: true
+	validates :password_confirmation, presence: true
 end

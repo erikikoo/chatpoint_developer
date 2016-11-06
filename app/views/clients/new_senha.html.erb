@@ -1,0 +1,12 @@
+<section class="col-md-offset-4 col-md-4">
+<h2>Mude a Senha Padrão</h2>
+<%= simple_form_for('client') do |f|%>    
+    <%= f.input :password, input_html: {class: 'form-control'}  %> 
+    <%= f.input :password_confirmation, input_html: {class: 'form-control'} %> 
+    <div class="error">
+		<%= raw("<div class='alert alert-danger>#{@error}</div>") unless @error.nil? %>
+	</div>
+    <%= f.button :submit, label: "Alterar" %>
+<% end %>
+
+</section>

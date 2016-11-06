@@ -15,17 +15,22 @@ Rails.application.routes.draw do
 
   resources :sessions, only:[:new, :destroy, :create]
   resources :clients_sessions, only:[:new, :destroy, :create]
+  
   resources :admin_session, only:[:new, :destroy, :create]
-
-
   get '/comercio/gerencia'  => 'clients_sessions#new'
-  post 'comercio/gerencia'  => 'clients_sessions#create'
-  get '/comercio'		        => 'clients#index'
-  get 'gerar_senha'         => 'clients#gerar_senha'
+  post '/comercio/gerencia' => 'clients_sessions#create'
+  get '/comercio/senha'     => 'clients#show_senha'
   get '/comercio/principal' => 'welcome#comercio'
-  post '/gerar_senha'	     	=> 'clients#gerar_senha'
+  get '/comercio/new_senha' => 'clients#new_senha'
+  post '/comercio/new_senha'=> 'clients#update_senha'
+  
+  
+
+  get 'gerar_senha'         => 'clients#change_password'
+  post '/gerar_senha'	     	=> 'clients#change_password'
   get '/chats'				      => 'chats#index'
   post '/' => 'welcome#create'
+
 #menu index
   get '/converca'           => 'chats#converca'
   get '/online'            => 'chats#user_online'
@@ -41,5 +46,7 @@ Rails.application.routes.draw do
   
 
   get '/select_sexo'      => 'chats#change_sexo'
+  
+
   mount ActionCable.server => '/cable'
 end
