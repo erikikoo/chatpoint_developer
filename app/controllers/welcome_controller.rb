@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 	def login
 		# remover
 		@commerce = Client.last		
-		@login = ClientPassword.find_by(client_id: @commerce.id)
+		@login = ClientPassword.find_by(client_id: @commerce.id) unless @commerce.nil?
 	end
 
 	def create
