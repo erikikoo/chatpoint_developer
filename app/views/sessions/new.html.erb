@@ -1,27 +1,20 @@
-<div class="row">
-	
+<div class="painel-login-chat">
+	<div class="row">
+		<div class="col-sm-12">
+			<%= simple_form_for User.new, url: sessions_path, method: :post do |f| %>
+			  
+			  <%= f.input :username, input_html: { class: 'form-control', autofocus: true }  %>
 
-	<div class="col-sm-12">
-		<%= simple_form_for User.new, url: sessions_path, method: :post do |f| %>
-
-		  
-		  <%= f.input :username, input_html: { class: 'form-control' }  %><br>
-
-		  
-		  <%= f.input :password, input_html: { class: 'form-control' }  %><br>
-		  <div class="col-xs-6"><%= f.button :submit, label: 'Login', class: 'btn btn-success' %></div>
-		  <div class="col-xs-6"><%= link_to 'Registrar', new_user_path, class: 'btn btn-default' %></div>
-		  
-		  	
-		<% end %>
-	</div>
-	<div class='col-sm-12'>	
-		<%= raw("<div class='alert alert-danger text-center>#{@error} </div>") unless @error.nil? %>
-	</div>
-	<div class="voltar">
-		
-		
-	</div>
-
-
+			  
+			  <%= f.input :password, input_html: { class: 'form-control' }  %>
+			  <p class="">
+				<%= raw("<div class='alert alert-danger text-center'> #{@error} </div>") unless @error.nil? %>
+			 </p>
+			  <%= f.button :submit, 'Login', class: 'btn btn-success col-xs-12' %>
+			  <%= link_to 'Registrar', new_user_path, class: 'btn btn-default col-xs-12' %>
+			  
+			  	
+			<% end %>
+		</div>	
+	</div>	
 </div>

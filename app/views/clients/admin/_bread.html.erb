@@ -1,0 +1,9 @@
+
+<% if @action == 'show' %>
+	<li><%= link_to 'Admin', '/admin/principal' %></li>
+	<li class='active'>Clientes</li>	
+<% elsif @action == 'update' %>
+	<li><%= link_to 'Admin', '/admin/principal' %></li>
+	<li><%= link_to 'Cliente', '/admin/clientes', remote: true %></li>
+	<li class='active'>Editando <%= @client.cliente %></li>
+<% end %>

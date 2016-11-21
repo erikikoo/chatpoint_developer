@@ -1,23 +1,35 @@
-<div class="scroll">
-  <h4>Chat with <%= @other_user.username %></h4>
+
+
+<div class="scroll row" >
+  <div class="header col-sm-12">
+    <%= link_to(raw("<i class='glyphicon glyphicon-arrow-left'></i>"), user_chats_path(current_user.id), data: {turbolinks: false}) %>
+    <%= get_avatar(@other_user,'chat') %> 
+    <span><%= @other_user.username %>  </span>
+  </div>  
+</div>
+<div class='body row'>
   <% if @chat.messages.any? %>
     <div id="messages">
       <%= render partial: 'messages/message', collection: @chat.messages.order(id: :asc)%>
+      <%= @teste %>
     </div>
   <%else%>
     <div id="messages">
     </div>
   <%end%>
 </div>
+<div class="row">  
+  <%= render partial: 'messages/message_form', locals: {message: @message, chat: @chat}%>
+</div>
+  
 
-<%= render partial: 'messages/message_form', locals: {message: @message, chat: @chat}%>
 
-<p><%= link_to "Back to list of chats", user_chats_path(current_user.id) %></p>
+<p></p>
 
 <script>
   createMessageChannel();
   messageForm();
-
   //defaults scrolling to bottom
+  
   $(".scroll").scrollTop($(".scroll")[0].scrollHeight);
 </script>

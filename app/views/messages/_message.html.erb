@@ -1,1 +1,21 @@
-<p><strong><%= message.user.username %>:</strong> <%=message.content%></p>
+<ul>
+	
+	<% if message.user.id == current_user.id %>
+		
+			<span class="content_ballon_user_current">				
+				<%= message.content %>
+			</span>	
+		
+		
+	<% else %>
+		
+			<span class="content_ballon">		
+					<%= message.content %>
+			</span>	
+		
+		
+	<% end	%>
+
+</ul>
+	
+

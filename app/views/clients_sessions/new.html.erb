@@ -6,7 +6,10 @@
   <%= f.input :password, input_html: { class: 'form-control' } %><br>
 
 <%= raw("<div class='alert alert-danger text-center'>#{@error}</div>") unless @error.nil? %>
-<%= f.submit 'Login' %>
+<div class="text-right">
+	<%= f.submit 'Login', class: 'btn btn-default' %>	
+</div>
+
 
 <% end %>
 </div>

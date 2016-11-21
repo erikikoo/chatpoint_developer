@@ -40,13 +40,4 @@ h4 {
 	border-bottom:1px solid #d3d3d3;
 }
 
-textarea#message_content {
-	width:480px;
-	height:80px;
 
-}
-
-div.scroll {
-	overflow: auto;
-	height:400px;
-}

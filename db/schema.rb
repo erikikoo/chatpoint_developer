@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106154240) do
+ActiveRecord::Schema.define(version: 20161119113523) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
@@ -51,17 +51,19 @@ ActiveRecord::Schema.define(version: 20161106154240) do
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.integer  "chat_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "user_to",    limit: 11
     t.string   "status",     limit: 1
+    t.integer  "chat_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "chat_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "active",     limit: 1, default: "0"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(version: 20161106154240) do
     t.boolean  "is_login",                  default: false
     t.string   "avatar"
     t.integer  "client_id"
+    t.boolean  "block",                     default: false
     t.index ["client_id"], name: "index_users_on_client_id", using: :btree
   end
 

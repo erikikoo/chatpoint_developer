@@ -3,4 +3,7 @@ class ApplicationController < ActionController::Base
 
   include UsersHelper
   include ClientsHelper
+
+  
+
 end

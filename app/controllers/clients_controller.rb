@@ -1,19 +1,22 @@
 class ClientsController < ApplicationController
 	before_action :get_client, only: [:edit, :update, :destroy]
-	before_action :get_all_client, only: [:update, :destroy, :adim, :create]
+	before_action :get_all_client, only: [:update, :destroy, :admin, :create]
 	
 	def new
-		@client = Client.new		
+		@client = Client.new
+		render 'clients/admin/new'		
 	end
 
 	def create
 		@client = Client.new(client_params)
 		@client.username = @client.cliente
-		@client.password = '123456'
-		@client.password_confirmation = '123456'
+		@client.password = '123456'		
 		if @client.save
 			@senha = gerar_senha
-			ClientPassword.create(client_id: @client.id, password_digest: @senha)			
+			ClientPassword.create(client_id: @client.id, password_digest: @senha)	
+			
+			render 'clients/admin/create'
+			
 		else
 			render :new
 		end
@@ -37,6 +40,7 @@ class ClientsController < ApplicationController
 	def index
 		@senha = ClientPassword.new
 		get_last_password
+		
 		# if get_last_password.nil?
 		# 	@senha = gerar_senha
 		# 	ClientPassword.create(password_digest: @senha)
@@ -44,19 +48,21 @@ class ClientsController < ApplicationController
 	end
 
 	def edit
-		
+		@action = 'update';
+		render 'clients/admin/edit'
 	end
 
-	def update
-		@client.update_attributes(client_params)
-		@clients = Client.all
-
-		render action: 'admin'
+	def update		
+		if @client.update(client_params)			
+			render action: 'admin/admin'
+		elsif	
+			render action: 'admin/edit'
+		end	
 	end
 
 	def destroy		
 		@client.destroy
-		render action: 'admin'
+		render action: 'admin/admin'
 	end	
 
 	def gerar_senha(size = 10)
@@ -100,8 +106,9 @@ class ClientsController < ApplicationController
 
 	def admin
 		@clients = Client.all
+		@action = 'show';
 		respond_to do |f|
-			f.js {render :admin}
+			f.js {render 'clients/admin/admin' }
 		end
 	end
 
@@ -115,11 +122,12 @@ class ClientsController < ApplicationController
 		@client = Client.find(params[:id])
 	end
 
+	
 	def get_last_password
-		@commerce_password = ClientPassword.where(client_id: session[:client_id]).last
+		@commerce_password = ClientPassword.where(client_id: session[:client_id], client_id: session[:client_id]).last
 	end
 
 	def client_params
-		params.require(:client).permit(:cliente, :cidade, :bairro, :contato, :fone, :status, :url, :password, :password_confirmation)
+		params.require(:client).permit(:cliente, :cidade, :bairro, :contato, :fone, :status, :url, :password)
 	end
 end

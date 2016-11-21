@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-sm-offset-4 col-sm-4 text-center login-adm">
 		<%= simple_form_for(Admin.new, url: admin_session_index_path, method: :post) do |f|%>    
-	    <%= f.input :username, input_html: { class: 'form-control' } %> 
+	    <%= f.input :username, input_html: { class: 'form-control'} %> 
 	    <%= f.input :password, input_html: { class: 'form-control' } %> 
 	    <div class="row">
 			<p class="">

@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: d3776ddd0b89d28fdebfd6e1c1541348cc90e5cc
+  specs:
+    twitter-bootstrap-rails (3.2.2)
+      actionpack (>= 3.1)
+      execjs (>= 2.2.2, >= 2.2)
+      less-rails (>= 2.5.0)
+      railties (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -42,6 +52,8 @@ GEM
     aws_cf_signer (0.1.3)
     bcrypt-ruby (3.1.1.rc1)
     bootstrap-toggle-rails (2.2.1.0)
+    bootstrap3-datetimepicker-rails (4.17.43)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
@@ -59,6 +71,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    commonjs (0.2.7)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
     domain_name (0.5.20161021)
@@ -79,6 +92,13 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.0.2)
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.8.0)
+      actionpack (>= 4.0)
+      less (~> 2.6.0)
+      sprockets (> 2, < 4)
+      tilt
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -90,6 +110,8 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    momentjs-rails (2.15.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     mysql2 (0.4.5-x64-mingw32)
     netrc (0.11.0)
@@ -118,6 +140,9 @@ GEM
       nokogiri (~> 1.6.0)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-i18n (5.0.1)
+      i18n (~> 0.7)
+      railties (~> 5.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -160,7 +185,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2016.8)
+    tzinfo-data (1.2016.9)
       tzinfo (>= 1.0.0)
     uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
@@ -182,20 +207,24 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (= 3.1.1.rc1)
   bootstrap-toggle-rails
+  bootstrap3-datetimepicker-rails (~> 4.17.43)
   byebug
   carrierwave
   cloudinary
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
+  momentjs-rails (>= 2.9.0)
   mysql2 (>= 0.3.18, < 0.5)
   pg
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
+  rails-i18n (~> 5.0.0)
   rails_12factor
   sass-rails (~> 5.0)
   simple_form
   turbolinks (~> 5)
+  twitter-bootstrap-rails!
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console

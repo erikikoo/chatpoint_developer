@@ -1,20 +1,31 @@
-<ul class='list-group users-index'>
-	  <% @user_online.each do |other_user| %>
-	  	<% if other_user != current_user && other_user.is_login %>
-		    <ul>
-		    	<li class='list-group-item'>
-				      <% if other_user.avatar.present? %>				      		
-				      			<%= image_tag(other_user.avatar.url(:thumbnail), :class => 'img-rounded') %>
-				      			<div id="teste"></div>
-				      			<span class="badge badge-active"><%= @mesage_no_read %></span>
-				      	<%else%>
-				      			<%= cl_image_tag("avatar-default_t3b9yz.jpg", :height=>60, :width=>60, :crop=>"scale",:class => 'img-rounded') %>
-				      <% end %>	
-				      		<%= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do %>			
-					  		<%= other_user.username %>
-					  <% end %>
-		      	</li>		      	
-		    </ul>
-	    <% end %>
-	  <% end %>
-	</ul>
+<%if @user_online.empty? or @user_online.nil? %>
+	<h5 class='text-center'>Não existe usuário <%= @genero %> on-line no momento!</h5>
+<%elsif%>
+  <div class=" row">
+	  	<ul>
+		    <% @user_online.each do |other_user| %>			  	
+				<%if other_user != current_user %>
+					<li class='container-user-chat'>
+				        <%= get_avatar(other_user, 'chat_index') %>      		
+								      	
+					    <%= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do %>
+									 
+						    <%= other_user.username %>
+										 
+							<% @mesagens.each do |k,v| %> 								 	
+							 		<% if k == other_user.id %>
+							 			<span class="message-no-read">
+								 			<span>
+								 				<%= "#{v}"%>								 				
+								 			</span>								 				
+								 			
+							 			</span>							 	
+							 		<% end %>	
+							<% end %>	
+				 	    <% end %>
+					</li>		      	
+		    	<% end %>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

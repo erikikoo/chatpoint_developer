@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #temporary root path for now 
   resources :messages, only:[:create]
 
-  resources :users, only:[:new, :create] do
+  resources :users, only:[:new, :create, :block,:edit, :update] do
    resources :chats, only: [:index, :show, :create]
   end 
 
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   post '/' => 'welcome#create'
 
 #menu index
-  get '/converca'           => 'chats#converca'
+  get '/conversa'           => 'chats#converca'
   get '/online'            => 'chats#user_online'
 
 
@@ -41,12 +41,16 @@ Rails.application.routes.draw do
   get '/admin/principal'  => 'admin#index' 
 
   get '/admin/clientes'   => 'clients#admin' 
-  get '/admin/usuarios'   => 'usuarios#admin' 
+  get '/admin/usuarios'   => 'users#admin' 
   get '/admin/mensagens'  => 'admin#index' 
   
 
+  get 'block/user/:id'    => 'users#block'
+  get 'unblock/user/:id'  => 'users#unblock'
+  #get '/users/:id/edit'   => 'users#edit'
+  #post '/users/:id'       => 'users#update'
   get '/select_sexo'      => 'chats#change_sexo'
-  
+  get '/useronline'       => 'chats#getUserOnline'
 
   mount ActionCable.server => '/cable'
 end

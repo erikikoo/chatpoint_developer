@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+//= require moment
+//= require bootstrap-datetimepicker
+//= require twitter/bootstrap/modal
 //= require turbolinks
 //= require bootstrap-toggle
 //= require_tree .
@@ -19,5 +23,8 @@
 
 $(document).on('ready page:change', function() {
   $('input[type="checkbox"].toggle').bootstrapToggle(); // assumes the checkboxes have the class "toggle"
+});
+jQuery(document).ready(function($) {
+	
 });
 

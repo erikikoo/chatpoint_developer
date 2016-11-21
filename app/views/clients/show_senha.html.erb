@@ -1,8 +1,24 @@
-<%= simple_form_for('new_password', url: '/gerar_senha', html: {remote: true}) do |f| %>
-	<%= f.submit "Gerar Senha" %>
-<% end %>
-<div id="new-password">
-	<%= render 'clients/password' %>
+<div class="painel-gerencia">
+	<div class="row">
+		<section>
+			<%= simple_form_for('new_password', url: '/gerar_senha', html: {remote: true}) do |f| %>
+				<div class="">
+					<%= f.submit "Gerar Senha", class: 'btn btn-warning col-sm-5 col-xs-12' %>		
+					<%= link_to 'Logout', clients_session_path(session[:client_id]), method: :delete, class: 'btn btn-default col-sm-offset-2 col-sm-5 col-xs-12' %>
+				</div>
+			<% end %>
+		</section>	
+	</div>
+
+	<div class="row">
+		<div id="new-password" class='text-center alert alert-success col-sm-12'>
+		<%= render 'clients/password' %>
+	</div>	
+	
+	</div>
+
+	<section class='text-center'>
+		ESSA SENHA DEVE SER REPASSADA AOS USUÁRIOS	
+	</section>	
 </div>
 
-<%= link_to 'Logout', clients_session_path(session[:client_id]), method: :delete %>

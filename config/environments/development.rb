@@ -46,10 +46,11 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
+   config.action_view.raise_on_missing_translations = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.action_cable.url = "ws://localhost:3000/cable"
+  #config.action_cable.url = "ws://localhost:3000/cable"
+  #config.i18n.available_locales = 'pt-BR'
 end

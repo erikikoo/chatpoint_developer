@@ -3,10 +3,21 @@
 </section>
 <div class="row menu-bar">
 	<section class="col-xs-4"><%= link_to 'On-line', '/online', remote: true %></section>
-	<section class="col-xs-4"><%= link_to 'converças', '/converca', remote: true %></section>
-	<section class="col-xs-4"><%= link_to 'bloquear', '#' %></section>
+	<section class="col-xs-4"><%= link_to 'Conversas', '/conversa', remote: true %></section>
+	<section class="col-xs-4"><%= link_to 'Bloquear', '#' %></section>
 </div>
 
 <div id='chat-body'>		
-	<%= render 'online' %>
+	<%= render 'online'%>	
 </div> 
+<div class="row">
+	<div class="system-notice">
+		<div class="col-xs-2 link-fale-conosco">
+			
+		</div>
+		<div class="col-xs-10 painel-notific text-center">			
+				NOTIFICAÇÕES DO SISTEMA							
+		</div>	
+	</div>	
+</div>
+<div id="product-modal" class="modal fade"></div>

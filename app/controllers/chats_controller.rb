@@ -1,17 +1,15 @@
 require 'securerandom'
 
-class ChatsController < ApplicationController
+class ChatsController < ApplicationController  
   
-  #before_action :require_login
-  
+  before_action :get_message_no_read, only: [:index, :user_online, :change_sexo]
   def index
     chats = current_user.chats
-    @existing_chats_users = current_user.existing_chats_users  
-    @user_online = User.all
-    
-    # teste
-    #@teste = Subscribe.where(user_id: current_user.id) 
-    @mesage_no_read = Message.where.not(status: 2).count 
+    @existing_chats_users = current_user.existing_chats_users 
+    _offline = Subscription.find_by(user_id: current_user.id)
+    _offline.update(active: 0) unless _offline.nil?
+    @user_online = User.where(is_login: true)  
+    #@mesagens = Message.where(user_to: current_user.id, status: 1).group('user_id').count
   end
 
   def create
@@ -29,6 +27,9 @@ class ChatsController < ApplicationController
   def show
     @other_user = User.find(params[:other_user])
     @chat = Chat.find_by(id: params[:id])
+    Message.where(user_to: params[:user_id], user_id: params[:other_user]).update(status: 2)
+    @ativo = Subscription.where(chat_id: params[:id], user_id: params[:user_id]).update(active: 1)
+    #@chat = Chat.find_by('id = ? AND created_at < ? AND created_at > ?',params[:id],(Time.current),(Time.current - 1.day))
     @message = Message.new
   end
 
@@ -38,22 +39,31 @@ class ChatsController < ApplicationController
   end
 
   def user_online
-    chats = current_user.chats
-    
+    chats = current_user.chats    
     @existing_chats_users = current_user.existing_chats_users
-    @user_online = User.all
+    Subscription.where(user_id: current_user).update(active: 0)
+    @user_online = User.where(is_login: true)
+    #@mesagens = Message.where(user_to: current_user, status: 1).group('user_id').count
   end
 
   def change_sexo    
     if  params[:option] == 'm' 
-      @user_online = User.where(sexo: 'm')      
+      @user_online = User.where(sexo: 'm',is_login: true).where.not(block: true, id: current_user )
+      @genero = 'Masculino'
     elsif params[:option] == 'f'
-      @user_online = User.where(sexo: 'f')      
+      @user_online = User.where(sexo: 'f',is_login: true).where.not(block: true, id: current_user )
+      @genero = 'Feminino'
     elsif params[:option] == 'i'
-      @user_online = User.where(sexo: 'i')      
+      @user_online = User.where(sexo: 'i',is_login: true).where.not(block: true, id: current_user )    
+      @genero = 'Indefinido'
     end   
     render partial: 'online'
      
+  end
+
+  def getUserOnline
+    @user_online = User.where(is_login: true)
+    render partial: 'online'
   end
 
   private
@@ -67,6 +77,10 @@ class ChatsController < ApplicationController
       end
     end
     nil
+  end
+
+  def get_message_no_read
+    @mesagens = Message.where(user_to: current_user, status: 1).group('user_id').count
   end
 
   def require_login

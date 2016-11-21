@@ -1,20 +1,28 @@
-<div class="row">
+<div class="row" id='login-index'>
 	<div class="col-sm-12">
 	<%= simple_form_for("logar") do |f|%>
+		<div class="form-inputs">
+			<%= f.input :comercio, input_html: { class: 'form-control', autofocus: true } %> 
+		</div>
 		<div class="form-inputs">
 			<%= f.input :password, input_html: { class: 'form-control' } %> 
 		</div>
 		<p class="">
 			<%= raw("<div class='alert alert-danger text-center'> #{@error} </div>") unless @error.nil? %>
-		</p>	
-		<%= f.button :submit, label: "Logar", class: 'btn btn-success', placeholder: 'Senha' %>
+		</p>
+		<div class="text-right">
+			<%= f.button :submit, "Logar", class: 'btn btn-success', placeholder: 'Senha' %>	
+		</div>	
+		
 	<% end %>
 </div>
 	
 </div>
 <div class="row">
 <div class="col-sm-12">
-<p>para acessar o chat <%= @login.password_digest unless @login.nil? %></p>
+<p>para acessar o chat: </p>
+<p><strong>Comercio:</strong> <%= @commerce.cliente unless @commerce.nil? %></p>
+<p><strong>Login:</strong> <%= @login.password_digest unless @login.nil? %></p>
 <h2><%= link_to 'Comercio/Admin', comercio_gerencia_path %></h2> 
 obs: precisa criar o mesmo no painel adm
 login: o nome do cliente<br>

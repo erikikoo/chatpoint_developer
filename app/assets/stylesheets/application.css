@@ -13,4 +13,14 @@
  *= require_tree .
  *= require_self
  *= require bootstrap-toggle
+ 
+	*= require bootstrap-datetimepicker
+ 
  */
+a:hover {
+	background-color: transparent;
+}
+
+.dropdown-menu > li > a:hover {
+	background-color: transparent !important;	
+}
