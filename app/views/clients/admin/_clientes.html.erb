@@ -19,7 +19,7 @@
 			</thead>
 			<tbody>				
 					<% @clients.each do |client| %>
-						<% @valor = User.where(client_id: client.id ).where(is_login: true).count %>
+						<% #@valor = User.where(client_id: client.id ).where(is_login: true).count %>
 						<tr >	
 							<td><%= client.cliente %></td>	
 							<td><%= client.cidade %></td>	

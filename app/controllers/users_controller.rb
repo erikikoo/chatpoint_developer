@@ -4,12 +4,12 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    
   end
 
   def create
     @user = User.new(user_params)
-    @user.client_id = session[:local_id]
-    @user.is_login = true
+    
     if @user.save      
       session[:user_id] = @user.id        
       cookies.signed[:user_id] = @user.id
@@ -20,10 +20,16 @@ class UsersController < ApplicationController
   end
 
   def edit    
+    @action = 'edit'
+    render :edit
   end  
   # PATCH/PUT /commitments/1
   def update
-    @user.update(user_params)
+    if @user.update(user_params) 
+      redirect_to :chats
+    else            
+      render :edit
+    end
   end
 
   def block
@@ -40,6 +46,7 @@ class UsersController < ApplicationController
   def admin    
     render 'users/admin/admin'
   end 
+
   private
 
   def get_user
@@ -50,6 +57,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :celular, :email, :nascimento, :cidade, :bairro, :sexo, :avatar, :client_id)
+    params.require(:user).permit(:username, :password_digest, :password_confirmation)
   end
 end

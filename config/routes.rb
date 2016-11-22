@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  resources :user_perfils
   root 'welcome#login'
   
   #root 'chats#index'
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   get '/comercio/new_senha' => 'clients#new_senha'
   post '/comercio/new_senha'=> 'clients#update_senha'
   
+  get 'politica'           => 'chats#politica' 
   
 
   get 'gerar_senha'         => 'clients#change_password'

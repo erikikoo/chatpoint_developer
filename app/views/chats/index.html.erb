@@ -2,9 +2,9 @@
 	<%= render 'cabecalho' %>
 </section>
 <div class="row menu-bar">
-	<section class="col-xs-4"><%= link_to 'On-line', '/online', remote: true %></section>
-	<section class="col-xs-4"><%= link_to 'Conversas', '/conversa', remote: true %></section>
-	<section class="col-xs-4"><%= link_to 'Bloquear', '#' %></section>
+	<section class="col-xs-4"><%= link_to 'On-line', '/online', remote: true, data: {turbolinks: false}  %></section>
+	<section class="col-xs-4"><%= link_to 'Conversas', '', remote: true, data: {turbolinks: false} %></section>
+	<section class="col-xs-4"><%= link_to 'Bloquear', '', remote: true,data: {turbolinks: false} %></section>
 </div>
 
 <div id='chat-body'>		

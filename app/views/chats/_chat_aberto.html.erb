@@ -3,13 +3,10 @@
 		<ul class='list-group users-index'>
 			<% if @existing_chats_users %>
 			  <% @existing_chats_users.each do |other_user| %>
-			  	<% if other_user != current_user %>
+			  	<% if other_user.user.id != current_user.id %>
 				    <li class='list-group-item'>
-				    	<% if other_user.avatar.present? %>				      		
-				      		<%= image_tag(other_user.avatar.url(:thumbnail), :class => 'img-rounded') %>
-				      	<%else%>
-							<%= cl_image_tag("avatar-default_t3b9yz.jpg", :height=>60, :width=>60, :crop=>"scale",:class => 'img-rounded') %>
-				      	<% end %>
+				    	<%= get_avatar(other_user,'chat')%>
+				    	
 				      <%= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do %>
 				      <%= other_user.username %>
 				      <% end %>

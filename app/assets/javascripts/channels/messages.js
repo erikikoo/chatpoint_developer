@@ -23,7 +23,7 @@ function createMessageChannel() {
 
 		renderMessage: function(data) {
 					
-			return "<p> <div class='"+style+"'>"+ data.message +"</div></p>";
+			return "<ul> <li class='"+style+"'>"+ data.message +"</li></ul>";
 		}
 	});
 

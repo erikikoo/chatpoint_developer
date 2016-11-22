@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(login_params[:password])
        session[:user_id] = @user.id
        cookies.signed[:user_id] = @user.id
-       User.find(session[:user_id]).update_attribute('is_login', true)
+       update_login(true)
        #3redirect_to root_path
        redirect_to '/chats'
     else
@@ -23,12 +23,16 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    User.find(session[:user_id]).update_attribute('is_login', false)
+    update_login(false)
     session.destroy
     redirect_to root_path
   end
 
   private  
+
+  def update_login(u)
+    UserPerfil.find(session[:user_id]).update_attribute('is_login', u)
+  end
   def login_params
     params.require(:user).permit(:username, :password)
   end

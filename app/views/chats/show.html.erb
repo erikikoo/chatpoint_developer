@@ -1,10 +1,12 @@
 
-
+<div class="">
 <div class="scroll row" >
-  <div class="header col-sm-12">
+  <div class="chat-title col-sm-12">
     <%= link_to(raw("<i class='glyphicon glyphicon-arrow-left'></i>"), user_chats_path(current_user.id), data: {turbolinks: false}) %>
-    <%= get_avatar(@other_user,'chat') %> 
-    <span><%= @other_user.username %>  </span>
+    
+     <%= get_avatar(@other_user,'chat') %>       
+    
+    <span><%= @other_user.user.username %>  </span>
   </div>  
 </div>
 <div class='body row'>
@@ -14,8 +16,7 @@
       <%= @teste %>
     </div>
   <%else%>
-    <div id="messages">
-    </div>
+    <div id="messages"></div>
   <%end%>
 </div>
 <div class="row">  
@@ -24,8 +25,8 @@
   
 
 
-<p></p>
 
+</div>
 <script>
   createMessageChannel();
   messageForm();

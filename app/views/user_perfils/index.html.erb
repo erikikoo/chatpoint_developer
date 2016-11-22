@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Perfils</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Celular</th>
+      <th>Email</th>
+      <th>Nascimento</th>
+      <th>Sexo</th>
+      <th>Cidade</th>
+      <th>Bairro</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_perfils.each do |user_perfil| %>
+      <tr>
+        <td><%= user_perfil.user %></td>
+        <td><%= user_perfil.celular %></td>
+        <td><%= user_perfil.email %></td>
+        <td><%= user_perfil.nascimento %></td>
+        <td><%= user_perfil.sexo %></td>
+        <td><%= user_perfil.cidade %></td>
+        <td><%= user_perfil.bairro %></td>
+        <td><%= link_to 'Show', user_perfil %></td>
+        <td><%= link_to 'Edit', edit_user_perfil_path(user_perfil) %></td>
+        <td><%= link_to 'Destroy', user_perfil, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Perfil', new_user_perfil_path %>

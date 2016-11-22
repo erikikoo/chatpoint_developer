@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_perfil.user.username %>
+  <%= @user_perfil.user.id %>
+  <%= @user_perfil.user.password_digest %>
+</p>
+
+<p>
+  <strong>Celular:</strong>
+  <%= @user_perfil.celular %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user_perfil.email %>
+</p>
+
+<p>
+  <strong>Nascimento:</strong>
+  <%= @user_perfil.nascimento %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= @user_perfil.sexo %>
+</p>
+
+<p>
+  <strong>Cidade:</strong>
+  <%= @user_perfil.cidade %>
+</p>
+
+<p>
+  <strong>Bairro:</strong>
+  <%= @user_perfil.bairro %>
+</p>
+
+<%= link_to 'Edit', edit_user_perfil_path(@user_perfil) %> |
+<%= link_to 'Back', user_perfils_path %>

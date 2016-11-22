@@ -1,15 +1,18 @@
 class User < ApplicationRecord
 	has_secure_password
-	mount_uploader :avatar, AvatarUploader
+	#mount_uploader :avatar, AvatarUploader
 	has_many :messages
 	has_many :subscriptions
 	has_many :chats, through: :subscriptions
 	
-	belongs_to :client
-
+	
 	validates :username, uniqueness: true
-	validates :password, confirmation: true
-	validates :password_confirmation, presence: true
+  	validates :password, confirmation: true
+  	validates :password_confirmation, presence: true
+
+	belongs_to :user_perfil, optional: true
+	
+	
 
 	def existing_chats_users
 		existing_chat_users = []

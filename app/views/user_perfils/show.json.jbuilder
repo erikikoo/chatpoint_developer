@@ -1,0 +1,1 @@
+json.partial! "user_perfils/user_perfil", user_perfil: @user_perfil

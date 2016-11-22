@@ -124,7 +124,7 @@ class ClientsController < ApplicationController
 
 	
 	def get_last_password
-		@commerce_password = ClientPassword.where(client_id: session[:client_id], client_id: session[:client_id]).last
+		@commerce_password = ClientPassword.where(client_id: session[:client_id]).last
 	end
 
 	def client_params

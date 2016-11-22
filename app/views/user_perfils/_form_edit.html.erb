@@ -1,0 +1,26 @@
+<section class="col-md-offset-1 col-md-10">
+<%= simple_form_for(@user_perfil) do |f| %>
+  <%= f.error_notification %>
+  <section class="text-center">
+    <%= get_avatar(@user_perfil, 'form')%>    
+  </section>
+  <%= f.input :avatar, as: :file, input_html: { class: 'form-control' } %>
+  <div class="form-inputs">
+    
+    <%= f.input :celular, input_html: {class: 'form-control'} %>
+    <%= f.input :email, input_html: {class: 'form-control'} %>
+    
+    <%= f.input :nascimento, as: :date ,input_html: { class: 'form-control'} %>
+    
+    <%= f.collection_radio_buttons :sexo, [['m', 'Masculino'] ,['f', 'Feminino'], ['i','Indeferido']], :first, :last, input_html: { class: 'form-control' } %>
+    
+    <%= f.input :cidade, input_html: {class: 'form-control'} %>
+    <%= f.input :bairro, input_html: {class: 'form-control'} %>    
+    
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Atualizar' %>
+  </div>
+<% end %>
+</section>

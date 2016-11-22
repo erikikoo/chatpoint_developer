@@ -4,18 +4,17 @@
   <div class=" row">
 	  	<ul>
 		    <% @user_online.each do |other_user| %>			  	
-				<%if other_user != current_user %>
+				<%if other_user.user.id != current_user.id %>
 					<li class='container-user-chat'>
 				        <%= get_avatar(other_user, 'chat_index') %>      		
 								      	
 					    <%= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do %>
-									 
-						    <%= other_user.username %>
-										 
+							
+						    <%= other_user.user.username %>
 							<% @mesagens.each do |k,v| %> 								 	
 							 		<% if k == other_user.id %>
 							 			<span class="message-no-read">
-								 			<span>
+								 			<span>								 				
 								 				<%= "#{v}"%>								 				
 								 			</span>								 				
 								 			

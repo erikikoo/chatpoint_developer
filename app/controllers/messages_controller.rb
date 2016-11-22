@@ -7,9 +7,8 @@ class MessagesController < ApplicationController
     _user_to = Subscription.find_by('chat_id = ? AND NOT user_id = ?', message.chat_id, current_user)
     message.user_to = _user_to.user_id
         
-    if _user_to.active.eql?('1')
-        message.status = '2'
-    
+    if _user_to.active
+        message.status = '2'    
     else
         message.status = '1'    
     end 

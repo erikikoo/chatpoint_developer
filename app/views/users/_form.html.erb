@@ -1,33 +1,14 @@
 
-<section class="col-md-12 text-center">
-<%= simple_form_for(@user, html: {multipart: true}) do |f| %>
-  <%= f.error_notification %>
-    <%= get_avatar(@user,'form') %>
-</section>
 <section class="col-md-offset-1 col-md-10">
-    <%= f.input :avatar, as: :file %>
-    <%= f.input :username, input_html: { class: 'form-control' } %>
-    <%= f.input :celular, input_html: { class: 'form-control' } %>
-    <%= f.input :email, input_html: { class: 'form-control' } %>
+<%= simple_form_for @user do |f| %>
+    <%= f.error_notification %>      
+      
+      
+      <%= f.input :username, input_html: { class: 'form-control'} %>
+      <%= f.input :password_digest , input_html: { class: 'form-control' }%>
+      <%= f.input :password_confirmation, label: 'Digite sua senha novamente',input_html: {class: 'form-control'} %>    
+     
     
-   
-    
-   
-    
-    <div class="">
-      <%= f.input :nascimento, as: :date, start_year: Date.today.year - 90,
-                              end_year: Date.today.year,
-                              order: [:day, :month, :year], input_html: { class: 'form-control' } %>      
-    </div>
-    <%= f.input :cidade, input_html: { class: 'form-control' } %>
-    <%= f.input :bairro, input_html: { class: 'form-control' } %>    
-    
-    <%= f.collection_radio_buttons :sexo, [['m', 'Masculino'] ,['f', 'Feminino'], ['i','Indeferido']], :first, :last, input_html: { class: 'form-control' } %>
-    
-    <%= f.input :password , input_html: { class: 'form-control' }%>
-    <%= f.input :password_confirmation, label: 'Digite sua senha novamente',input_html: {class: 'form-control'} %>
-    
-
     <div class="actions">
       <%= f.button :submit, class: 'btn btn-success' %>
     </div>

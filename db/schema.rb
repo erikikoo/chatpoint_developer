@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119113523) do
+ActiveRecord::Schema.define(version: 20161122160913) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
@@ -51,39 +51,47 @@ ActiveRecord::Schema.define(version: 20161119113523) do
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.string   "user_to",    limit: 11
-    t.string   "status",     limit: 1
     t.integer  "chat_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "status",     limit: 1
+    t.integer  "user_to"
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "chat_id"
     t.integer  "user_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "active",     limit: 1, default: "0"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "active",     default: false
+  end
+
+  create_table "user_perfils", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "celular"
+    t.string   "email"
+    t.date     "nascimento"
+    t.string   "sexo"
+    t.string   "cidade"
+    t.string   "bairro"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "avatar"
+    t.boolean  "is_login",   default: true
+    t.boolean  "block",      default: false
+    t.integer  "client_id"
+    t.index ["client_id"], name: "index_user_perfils_on_client_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "celular"
-    t.string   "email"
-    t.date     "nascimento"
-    t.string   "sexo",            limit: 1
-    t.string   "cidade"
-    t.string   "bairro"
-    t.boolean  "is_login",                  default: false
-    t.string   "avatar"
-    t.integer  "client_id"
-    t.boolean  "block",                     default: false
-    t.index ["client_id"], name: "index_users_on_client_id", using: :btree
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_perfil_id"
+    t.index ["user_perfil_id"], name: "index_users_on_user_perfil_id", using: :btree
   end
 
   add_foreign_key "client_passwords", "clients"
-  add_foreign_key "users", "clients"
+  add_foreign_key "user_perfils", "clients"
+  add_foreign_key "users", "user_perfils"
 end
