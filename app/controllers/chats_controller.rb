@@ -87,7 +87,7 @@ class ChatsController < ApplicationController
   
 
   def get_user_online(user)
-    @user_online = UserPerfil.where(sexo: user,is_login: true).where.not(id: current_user) 
+    @user_online = UserPerfil.where(sexo: user, is_login: true).where.not(id: current_user) 
     #render partial: 'online'
   end
 end
