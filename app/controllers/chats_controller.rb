@@ -41,8 +41,8 @@ class ChatsController < ApplicationController
   def user_online
     chats = current_user.chats    
     @existing_chats_users = current_user.existing_chats_users
-    Subscription.where(user_id: current_user).update(active: 0)
-    @user_online = UserPerfil.where(is_login: true).where.not(block: true, id: current_user )
+    Subscription.where(user_id: current_user).update(active: false)
+    @user_online = UserPerfil.where(is_login: true).where.not(id: current_user )
     #@mesagens = Message.where(user_to: current_user, status: 1).group('user_id').count
   end
 
@@ -77,7 +77,7 @@ class ChatsController < ApplicationController
     nil
   end
   def get_message_no_read
-    @mesagens = Message.where(user_to: current_user, status: 1).group('user_id').count
+    @mesagens = Message.where(user_to: current_user, status: true).group('user_id').count
   end
 
   def require_login
@@ -87,7 +87,7 @@ class ChatsController < ApplicationController
   
 
   def get_user_online(user)
-    @user_online = UserPerfil.where(sexo: user,is_login: true).where.not(block: true, id: current_user) 
+    @user_online = UserPerfil.where(sexo: user,is_login: true).where.not(id: current_user) 
     #render partial: 'online'
   end
 end
