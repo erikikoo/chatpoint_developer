@@ -48,7 +48,7 @@ end
  group :production do
 	gem 'rails_12factor'
 	gem 'pg'
-	gem 'redis'
+
 	
 end
 #e zoneinfo files, so bundle the tzinfo-data gem
@@ -68,3 +68,5 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+gem 'redis', '~> 3.0'
