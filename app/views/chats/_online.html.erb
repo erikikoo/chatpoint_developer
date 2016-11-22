@@ -4,7 +4,7 @@
   <div class=" row">
 	  	<ul>
 		    <% @user_online.each do |other_user| %>			  	
-				<%if other_user.user.id != current_user.id %>
+				<%if other_user.user.id %>
 					<li class='container-user-chat'>
 				        <%= get_avatar(other_user, 'chat_index') %>      		
 								      	
