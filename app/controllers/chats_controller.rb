@@ -8,7 +8,7 @@ class ChatsController < ApplicationController
     @existing_chats_users = current_user.existing_chats_users 
     _offline = Subscription.find_by(user_id: current_user.id)
     _offline.update(active: 0) unless _offline.nil?
-    @user_online = UserPerfil.where(is_login: true).where.not(id: current_user)
+    get_online
     @mesagens = Message.where(user_to: current_user.id, status: 1).group('user_id').count
   end
 
@@ -42,7 +42,7 @@ class ChatsController < ApplicationController
     chats = current_user.chats    
     @existing_chats_users = current_user.existing_chats_users
     Subscription.where(user_id: current_user).update(active: false)
-    @user_online = UserPerfil.where(is_login: true).where.not(id: current_user )
+    get_online
     #@mesagens = Message.where(user_to: current_user, status: 1).group('user_id').count
   end
 
@@ -84,10 +84,13 @@ class ChatsController < ApplicationController
     redirect_to new_session_path unless logged_in?
   end
 
-  
+  def get_online
+    @user_online = UserPerfil.where(is_login: true).where.not(id: current_user)
+  end
 
   def get_user_online(user)
-    @user_online = UserPerfil.where(sexo: user, is_login: true).where.not(id: current_user) 
+    
+    @user_online = UserPerfil.where(sexo: user, is_login: true).where.not(id: current_user)
     #render partial: 'online'
   end
 end
