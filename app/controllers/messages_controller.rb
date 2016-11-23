@@ -14,18 +14,15 @@ class MessagesController < ApplicationController
     end 
 
     if message.save
-      
-
-      
      
-      ActionCable.server.broadcast( "messages_#{message_params[:chat_id]}",
+      ActionCable.server.broadcast "messages_#{message_params[:chat_id]}",
       #broadcasting out to messages channel, which all chats are linked to messages channel
       message: message.content,
       user: message.user.username,
       user_id: message.user_id,
       current_user: current_user.id
       
-      )
+      head :ok
     else
       redirect_to chats_path
     end

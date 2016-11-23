@@ -85,4 +85,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.i18n.available_locales = 'pt-BR'
+  config.web_socket_server_url = "wss://calm-stream-65541.herokuapp.com/cable" 
+  config.action_cable.allowed_request_origins = ['https://calm-stream-65541.herokuapp.com', 'http://calm-stream-65541.herokuapp.com']
+  https://git.heroku.com/calm-stream-65541.git
 end
