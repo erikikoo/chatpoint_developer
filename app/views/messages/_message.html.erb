@@ -1,14 +1,16 @@
-<ul class='messages'>	
-	<% if message.user.id == current_user.id %>		
-		<li class="content_ballon_user_current">				
-			<%= message.content %>
-		</li>			
-	<% else %>		
-		<li class="content_ballon">		
-			<%= message.content %>
-		</li>			
-	<% end	%>
-</ul> 
+<div>
+	<ul class='messages'>	
+		<% if message.user.id == current_user.id %>		
+			<li class="content_ballon_user_current">				
+				<%= message.content %>
+			</li>			
+		<% else %>		
+			<li class="content_ballon">		
+				<%= message.content %>
+			</li>			
+		<% end	%>
+	</ul> 
+</div>
 
 
     

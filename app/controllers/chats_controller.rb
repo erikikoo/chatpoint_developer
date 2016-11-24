@@ -2,6 +2,8 @@ require 'securerandom'
 
 class ChatsController < ApplicationController  
   
+  #caches_action :refresh_user_and_msn
+
   before_action :get_message_no_read, only: [:index, :user_online, :change_sexo]
   def index
     chats = current_user.chats
@@ -43,7 +45,13 @@ class ChatsController < ApplicationController
     @existing_chats_users = current_user.existing_chats_users
     Subscription.where(user_id: current_user).update(active: false)
     get_online
-    #@mesagens = Message.where(user_to: current_user, status: 1).group('user_id').count
+    get_message_no_read
+  end
+
+  def refresh_user_and_msn
+    get_online
+    get_message_no_read
+    render :user_online
   end
 
   def change_sexo    
@@ -60,6 +68,8 @@ class ChatsController < ApplicationController
     render partial: 'online'
      
   end
+
+  
 
   def politica
   end
@@ -85,12 +95,13 @@ class ChatsController < ApplicationController
   end
 
   def get_online
-    @user_online = UserPerfil.where(is_login: true).where.not(id: current_user)
+    #@teste = User.where.not(id: current_user)
+    @user_online = UserPerfil.where(is_login: true, block: false).where.not(id: session[:user_id])#.select('is_login, username, avatar, sexo, block')
   end
 
-  def get_user_online(user)
-    
+  def get_user_online(user)    
     @user_online = UserPerfil.where(sexo: user, is_login: true).where.not(id: current_user)
     #render partial: 'online'
   end
+
 end

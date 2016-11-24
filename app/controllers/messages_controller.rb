@@ -21,6 +21,8 @@ class MessagesController < ApplicationController
       user: message.user.username,
       user_id: message.user_id,
       current_user: current_user.id
+           
+
       
       head :ok
     else

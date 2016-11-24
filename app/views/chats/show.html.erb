@@ -1,7 +1,7 @@
 
 <div class="">
 <div class="scroll row" >
-  <div class="chat-title col-sm-12">
+  <div class="header col-sm-12">
     <%= link_to(raw("<i class='glyphicon glyphicon-arrow-left'></i>"), user_chats_path(current_user.id), data: {turbolinks: false}) %>
     
      <%= get_avatar(@other_user,'chat') %>       
@@ -12,19 +12,16 @@
 <div class='body row'>
   <% if @chat.messages.any? %>
     <div id="messages">
-      <%= render partial: 'messages/message', collection: @chat.messages.order(id: :asc)%>
-      <%= @teste %>
+      <%= render partial: 'messages/message', collection: @chat.messages.order(id: :asc)%>      
     </div>
   <%else%>
     <div id="messages"></div>
   <%end%>
+
 </div>
 <div class="row">  
   <%= render partial: 'messages/message_form', locals: {message: @message, chat: @chat}%>
 </div>
-  
-
-
 
 </div>
 <script>
@@ -32,5 +29,5 @@
   messageForm();
   //defaults scrolling to bottom
   
-  $(".scroll").scrollTop($(".scroll")[0].scrollHeight);
+  $(".scroll").scrollTop($(".scroll")[0].scrollHeight());
 </script>

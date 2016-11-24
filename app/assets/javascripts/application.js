@@ -23,7 +23,31 @@
 
 $(document).on('ready page:change', function() {
   $('input[type="checkbox"].toggle').bootstrapToggle(); // assumes the checkboxes have the class "toggle"
+
+
 });
+
+jQuery(document).ready(function($) {
+	setInterval(function(){
+		getUserOnline();
+	},5000);
+});
+
+function getUserOnline() {
+	$.ajax({
+		url: '/user-online',		
+	})
+	.done(function(data) {
+		console.log("sucesso");
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+}
 
 
 

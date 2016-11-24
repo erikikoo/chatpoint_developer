@@ -9,20 +9,20 @@ function messageForm(){
             e.preventDefault(); // prevent another \n from being entered
             chatForm.submit();
             $(chatForm).trigger('reset');
-            $(".scroll").scrollTop($(".scroll")[0].scrollHeight);
+            
+            $("html body").scrollTop($(".scroll")[0].scrollHeight());
           }
         }  
       
       
   });
 
-  $('.btnEnviarMensagem').click(function (e) {
-      
+  $('.btnEnviarMensagem').click(function (e) {      
       
             e.preventDefault(); // prevent another \n from being entered
             chatForm.submit();
             $(chatForm).trigger('reset');
-            $(".scroll").scrollTop($(".scroll")[0].scrollHeight);
+            $(".scroll").scrollTop($(".scroll")[0].scrollHeight());
       
   });
 

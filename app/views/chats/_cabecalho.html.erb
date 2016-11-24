@@ -9,10 +9,9 @@
 		          <a class="btn btn-controle-login dropdown-toggle" data-toggle="dropdown" href="#"><i class='glyphicon glyphicon-menu-hamburger'></i></a> 
 		          
 		          <ul class="dropdown-menu"> 
-
 			          	<li><%= link_to 'Editar perfil',edit_user_perfil_path(current_user.id),remote: true %></li>
 			          	<li><%= link_to 'Politica de Uso',politica_path,remote: true %></li>
-			          	<li><%= link_to 'Sair', session_path(current_user.id), method: :delete%></li>
+			          	<li><%= link_to 'Sair', session_path(current_user.id), method: :delete %></li>
 		                    
 		          </ul>
 			

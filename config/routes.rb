@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-
+  get '/user-online'   => 'chats#refresh_user_and_msn'
   resources :user_perfils
   root 'welcome#login'
   
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   #get '/users/:id/edit'   => 'users#edit'
   #post '/users/:id'       => 'users#update'
   get '/select_sexo'      => 'chats#change_sexo'
-  get '/useronline'       => 'chats#getUserOnline'
+  #get '/useronline'       => 'chats#getUserOnline'
 
   mount ActionCable.server => '/cable'
 end

@@ -16,14 +16,13 @@ function createMessageChannel() {
 			} else {
 				
 				style = 'content_ballon';	
-			}
-				
+			}			
+			
 			return $('#messages').append(this.renderMessage(data));
 		},
 
-		renderMessage: function(data) {
-					
-			return "<ul> <li class='"+style+"'>"+ data.message +"</li></ul>";
+		renderMessage: function(data) {					
+			return "<ul class='messages'> <li class='"+style+"'>"+ data.message +"</li></ul>";
 		}
 	});
 
