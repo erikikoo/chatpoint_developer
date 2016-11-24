@@ -86,8 +86,8 @@ class ChatsController < ApplicationController
     end
     nil
   end
-  def get_message_no_read
-    @mesagens = Message.where(user_to: current_user, status: true).group('user_id').count
+  def get_message_no_read    
+    @mesagens = Message.where(user_to: current_user.id, status: 1).group('user_id').count
   end
 
   def require_login
