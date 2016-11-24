@@ -5,5 +5,6 @@
 //= require_tree .
 
 
-@App = {}
-App.cable = ActionCable.createConsumer('/cable')
+this.App = {};
+
+App.cable = ActionCable.createConsumer();
