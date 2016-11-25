@@ -18,9 +18,9 @@ class ClientsSessionsController < ApplicationController
 				Client.find(@client.id).update_attributes(sign_in_count: @sign_in_count)
 				session[:client_id] = @client.id
 				if @sign_in_count == 1
-					redirect_to "/#{@client.cliente.downcase}/new_senha"
+					redirect_to "/comercio/new_senha"
 				else 
-					redirect_to "/#{@client.cliente.downcase}/senha"	
+					redirect_to "/comercio/senha"	
 				end
 			else
 				@error = "Erro de autenticação! Login e/ou senha incorreto"

@@ -14,7 +14,7 @@ class WelcomeController < ApplicationController
 			if @login.password_digest == login_params[:password] and @comercio
 				session[:local_name] = @comercio.cliente.downcase
 				session[:local_id] = @login.client.id
-				redirect_to "/#{session[:local_name]}/principal"
+				redirect_to "/comercio/principal"
 			else
 				@error = 'Erro de autenticação, dirija-se até a gerência e solicite uma senha válida'
 				render 'welcome/login'

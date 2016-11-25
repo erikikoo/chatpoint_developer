@@ -18,11 +18,11 @@ Rails.application.routes.draw do
   resources :clients_sessions, only:[:new, :destroy, :create]
   
   resources :admin_session, only:[:new, :destroy, :create]
-  get  '/:comercio/gerencia'  => 'clients_sessions#new'
+  get  '/comercio/gerencia'  => 'clients_sessions#new'
   post '/comercio/gerencia'  => 'clients_sessions#create'
-  get  '/:comercio/senha'     => 'clients#show_senha'
-  get  '/:comercio/principal' => 'welcome#comercio'
-  get  '/:comercio/new_senha' => 'clients#new_senha'
+  get  '/comercio/senha'     => 'clients#show_senha'
+  get  '/comercio/principal'      => 'welcome#comercio'
+  get  '/comercio/new_senha' => 'clients#new_senha'
   post '/comercio/new_senha'  => 'clients#update_senha'
   
   get 'politica'           => 'chats#politica' 
