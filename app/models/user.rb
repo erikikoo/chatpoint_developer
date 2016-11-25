@@ -4,7 +4,7 @@ class User < ApplicationRecord
 	has_many :messages
 	has_many :subscriptions
 	has_many :chats, through: :subscriptions
-	
+	has_one  :inscription_in_the_establishment
 	
 	validates :username, uniqueness: true
   	validates :password, confirmation: true
@@ -17,7 +17,7 @@ class User < ApplicationRecord
 	def existing_chats_users
 		existing_chat_users = []
 		chats.each do |chat| 
-	  		if chat.created_at.day > Time.current.day - 1
+	  		if chat.created_at.day.eql?(Time.current.day)
 		  		chat.subscriptions.each do |subscription|
 		  			existing_chat_users << subscription.user if subscription.user != self
 	  			end

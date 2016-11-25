@@ -10,11 +10,18 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(username: login_params[:username])
-    if @user && @user.authenticate(login_params[:password])
+    
+    if @user && @user.authenticate(login_params[:password]) 
        session[:user_id] = @user.id
        cookies.signed[:user_id] = @user.id
-       update_login(true)       
-       redirect_to '/chats'
+       if InscriptionInTheEstablishment.find_by(user_perfil_id: @user.user_perfil.id, client_id: session[:local_id])
+        #Client.find(session[:local_id]) && 
+         update_login(true)       
+         redirect_to '/chats'
+       else          
+         @info = "Usuário não possui cadastro neste estabelecimento. " 
+         render 'sessions/new'
+       end  
     else
       @error = "Usuário e/ou senha inválido"
       render 'sessions/new'
@@ -25,6 +32,12 @@ class SessionsController < ApplicationController
     update_login(false)
     session.destroy
     redirect_to root_path
+  end
+
+  def registe_to_establishment
+    InscriptionInTheEstablishment.create(user_perfil_id: session[:user_id] , client_id: session[:local_id])
+    update_login(true)
+    redirect_to '/chats'
   end
 
   private  

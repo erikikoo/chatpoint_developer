@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122160913) do
+ActiveRecord::Schema.define(version: 20161125163728) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20161122160913) do
     t.integer  "sign_in_count", default: 0
   end
 
+  create_table "inscription_in_the_establishments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_perfil_id"
+    t.integer  "client_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["client_id"], name: "index_inscription_in_the_establishments_on_client_id", using: :btree
+    t.index ["user_perfil_id"], name: "index_inscription_in_the_establishments_on_user_perfil_id", using: :btree
+  end
+
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -78,8 +87,6 @@ ActiveRecord::Schema.define(version: 20161122160913) do
     t.string   "avatar"
     t.boolean  "is_login",   default: true
     t.boolean  "block",      default: false
-    t.integer  "client_id"
-    t.index ["client_id"], name: "index_user_perfils_on_client_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -92,6 +99,7 @@ ActiveRecord::Schema.define(version: 20161122160913) do
   end
 
   add_foreign_key "client_passwords", "clients"
-  add_foreign_key "user_perfils", "clients"
+  add_foreign_key "inscription_in_the_establishments", "clients"
+  add_foreign_key "inscription_in_the_establishments", "user_perfils"
   add_foreign_key "users", "user_perfils"
 end

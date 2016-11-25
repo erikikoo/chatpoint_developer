@@ -8,7 +8,7 @@
 			<%= f.input :password, input_html: { class: 'form-control' } %> 
 		</div>
 		<p class="">
-			<%= raw("<div class='alert alert-danger text-center'> #{@error} </div>") unless @error.nil? %>
+			<%= raw("<div class='alert alert-danger text-center'> #{@error} </div>") unless @error.nil? %>			
 		</p>
 		<div class="text-right">
 			<%= f.button :submit, "Logar", class: 'btn btn-success', placeholder: 'Senha' %>	

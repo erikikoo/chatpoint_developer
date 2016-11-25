@@ -1,17 +1,15 @@
 require 'securerandom'
 
-class ChatsController < ApplicationController  
+class ChatsController < ApplicationController    
   
-  #caches_action :refresh_user_and_msn
-
-  before_action :get_message_no_read, only: [:index, :user_online, :change_sexo]
   def index
     chats = current_user.chats
     @existing_chats_users = current_user.existing_chats_users 
     _offline = Subscription.find_by(user_id: current_user.id)
     _offline.update(active: 0) unless _offline.nil?
     get_online
-    @mesagens = Message.where(user_to: current_user.id, status: 1).group('user_id').count
+    get_message_no_read
+
   end
 
   def create
@@ -30,8 +28,7 @@ class ChatsController < ApplicationController
     @other_user = UserPerfil.find(params[:other_user])
     @chat = Chat.find_by(id: params[:id])
     Message.where(user_to: params[:user_id], user_id: params[:other_user]).update(status: 2)
-    @ativo = Subscription.where(chat_id: params[:id], user_id: params[:user_id]).update(active: 1)
-    #@chat = Chat.find_by('id = ? AND created_at < ? AND created_at > ?',params[:id],(Time.current),(Time.current - 1.day))
+    @ativo = Subscription.where(chat_id: params[:id], user_id: params[:user_id]).update(active: 1)    
     @message = Message.new
   end
 
@@ -79,9 +76,11 @@ class ChatsController < ApplicationController
     chats = current_user.chats
     chats.each do |chat|
       chat.subscriptions.each do |s|
-        if s.user_id == second_user.id
-          return chat
-        end
+        if s.created_at.day.eql?(Time.current.day)
+          if (s.user_id == second_user.id) 
+            return chat
+          end
+        end  
       end
     end
     nil
@@ -94,14 +93,13 @@ class ChatsController < ApplicationController
     redirect_to new_session_path unless logged_in?
   end
 
-  def get_online
-    #@teste = User.where.not(id: current_user)
+  def get_online    
     @user_online = UserPerfil.where(is_login: true, block: false).where.not(id: session[:user_id])#.select('is_login, username, avatar, sexo, block')
   end
 
   def get_user_online(user)    
     @user_online = UserPerfil.where(sexo: user, is_login: true).where.not(id: current_user)
-    #render partial: 'online'
+    
   end
 
 end

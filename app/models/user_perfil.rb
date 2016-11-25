@@ -1,8 +1,10 @@
 class UserPerfil < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   
-  belongs_to :client
-  has_one :user
   
+  validates :email, uniqueness: true
+  has_one :user
+  has_many :inscription_in_the_establishments
+
   accepts_nested_attributes_for :user, allow_destroy: true
 end

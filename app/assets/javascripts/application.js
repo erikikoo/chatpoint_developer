@@ -28,9 +28,15 @@ $(document).on('ready page:change', function() {
 });
 
 jQuery(document).ready(function($) {
-	setInterval(function(){
-		getUserOnline();
-	},5000);
+	
+	var local = window.location.pathname;
+	var temp = local.slice(-6);
+	
+	if (temp == '/chats') {
+		setInterval(function(){
+			getUserOnline();
+		},5000);
+	}
 });
 
 function getUserOnline() {

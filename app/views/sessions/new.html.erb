@@ -9,11 +9,16 @@
 			  <%= f.input :password, input_html: { class: 'form-control' }  %>
 			  <p class="">
 				<%= raw("<div class='alert alert-danger text-center'> #{@error} </div>") unless @error.nil? %>
+				<% unless @info.nil? %>
+				<div class='alert alert-info text-center'> <%= @info %> <strong><%= link_to 'Registre-se aqui', 'registe_to_establishment'%></strong>  </div>
+				<% end %>
 			 </p>
 			  <%= f.button :submit, 'Login', class: 'btn btn-success col-xs-12' %>
-			  <%= link_to 'Registrar', new_user_path, class: 'btn btn-default col-xs-12' %>
-			  
-			  	
+			  <% unless @info.nil? %>
+					<%= link_to 'Registrar-se', new_user_path, class: 'btn btn-default col-xs-12' %>
+			  <% else %>
+			  	<%= link_to 'Cadastrar', new_user_path, class: 'btn btn-default col-xs-12' %>			  
+			  <% end %>	  	
 			<% end %>
 		</div>	
 	</div>	

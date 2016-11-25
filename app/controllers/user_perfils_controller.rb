@@ -25,15 +25,17 @@ class UserPerfilsController < ApplicationController
   # POST /user_perfils
   # POST /user_perfils.json
   def create
-    @user_perfil = UserPerfil.new(user_perfil_params)    
-    @user_perfil.client_id = session[:local_id]
-    if @user_perfil.save
+    @user_perfil = UserPerfil.new(user_perfil_params)        
+    
+     if @user_perfil.save    
+    
+       @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])    
        session[:user_id] = @user_perfil.user.id        
-      cookies.signed[:user_id] = @user_perfil.user.id
-      redirect_to chats_path
-    else
-       render :new
-    end
+       cookies.signed[:user_id] = @user_perfil.user.id
+       redirect_to chats_path
+     else
+        render :new
+     end
     
   end
 
