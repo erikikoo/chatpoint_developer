@@ -32,19 +32,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def block
-     if @user.update_attribute('block', true)
-        redirect_to action: :admin 
-     end
-  end
-  def unblock
-     if @user.update_attribute('block', false)        
-        redirect_to action: :admin 
-     end
-  end
+  
 
   def admin    
-    render 'users/admin/admin'
+   
   end 
 
   private

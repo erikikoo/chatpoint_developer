@@ -1,9 +1,9 @@
 <div class="option">
-	<%= render partial: 'users/admin/menu_option'%>
+	<%= render partial: 'user_perfils/admin/menu_option'%>
 </div>
 
-<% if @users.nil? %>
-	Você não possui useres cadastrados
+<% if @user_perfil.nil? %>
+	Você não possui usuários cadastrados
 <% else %>
 	<table class='table table-striped table-hover'>		
 			<thead class='text-center'>
@@ -17,7 +17,7 @@
 				<th>Ações</th>
 			</thead>
 			<tbody>				
-					<% @users.each do |user| %>						
+					<% @user_perfil.each do |user| %>						
 						<tr >
 							<td>Cliente</td>							
 							<td><%= user.cidade %></td>	

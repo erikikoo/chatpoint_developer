@@ -2,19 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
- .body {
+
+.body {
  	 position: relative;
  	 top: 70px; 	
  	 margin-bottom: 80px;
  	 color: rebeccapurple;	 
- }
+}
+
+a {
+  text-decoration: none !important;
+} 
+
+
+.chat-cabecalho-form {
+  width: 85vw;
+  float: left;
+}
+.chat-cabecalho-menu {
+  width: 5vw;
+  float: left;
+  margin-bottom: 20px;
+
+}
+
+
 
 #chat-menu {
+  clear: both;
  	margin: 10px 0;
  	
   	select {
- 		position: relative;
- 		left: -10px;
+   		position: relative;
+   		left: -10px;
+     
   	}
 
   	a {
@@ -22,18 +43,62 @@
   		left: -20px;
   		top: -2px;
   	}
- 	i {
+
+ 	  i {
   		font-size: 2rem;
   	}
+    
  }
+  
+  .menu-dropdown {
+      position: relative;
+      left: 50px;
+      top: -45px;
+      size: 2rem;
+    }
+  @media (max-width: 350px){
+    .menu-dropdown {
+      position: relative;
+      left: -20px;
+      top: -45px;
+    }
+  }  
 
+  @media (max-width: 508px){
+    .menu-dropdown {
+      position: relative;
+      left: -10px;
+      top: -45px;
+    }
+  }  
+
+  @media (max-width: 768px){
+    .menu-dropdown {
+      position: relative;
+      left: 0px;
+      top: -45px;
+    }
+  }  
+
+  @media (min-width: 1200px){
+    .menu-dropdown {
+      position: relative;
+      left: 100px;
+      top: -45px;
+    }
+  }  
+ 
  .container-user-chat {
  	  width: 100%;
-    margin: 20px 0;
+    
     padding: 10px 0;
     border-bottom: 1px solid #eee;  
     position: relative;
     top: 5px;
+    &:hover {
+      background-color: rgba(238,238,238,0.3);
+    }
+    
  }
 
 // .system-notice {
@@ -93,6 +158,8 @@
 // 		}		
 // 	}
 // }
+
+
 
  #message_content {
  	resize: none;
@@ -173,21 +240,51 @@
 	 bottom: 0;
  	 padding-left: 30px; 
  	 margin: 0;
+   textarea {
+    width: 95vw;
+    padding: 10px 30px 0;
+    color: rgba(0,0,0,.8);
+   }
  }
 
  .btnEnviarMensagem {
- 	border-radius: 100%;
- 	position: relative;
- 	height: 40px;
- 	width: 40px;
- 	top: 22px;
- 	left: -9px;
- 	background-color: #286090;
- 	color: #fff;
- 	font-size: .9rem;	
- 	border: none;
- 	 overflow-y:hidden ;
+   	border-radius: 100%;
+   	position: relative;
+   	height: 40px;
+   	width: 40px;
+   	top: 22px;
+   	left: -9px;
+   	background-color: #286090;
+   	color: #fff;
+   	font-size: .9rem;	
+   	border: none;
+   	overflow-y:hidden ;
+    margin-right: 2vw;
+    float: right;
  }
+
+ @media (max-width: 570px) {
+    .container-form-message {
+      textarea {
+        width: 90vw;
+      }
+    }
+
+    
+ }
+
+ @media (min-width: 900px) {
+    .btnEnviarMensagem {
+      margin-right: 2vw;
+    }
+    .container-form-message {
+      textarea {
+        width: 96vw;
+      }
+    }
+ }
+
+
 
  .message-no-read {
  	float: right;
@@ -547,3 +644,11 @@
      transform: translateY(-10px);
    }
  }
+
+// @media (min-width: 900px) {
+//    .btnEnviarMensagem {
+    
+//     margin-right: 5%;
+    
+//  }
+// }

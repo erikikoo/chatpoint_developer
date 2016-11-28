@@ -3,11 +3,11 @@
 		<div class="row">
 			<%=form_for message, remote: true,authenticity_token: true do |f|%>
 				  
-				  <%= f.text_area :content, data: {textarea: "message"}, class: 'form-group col-xs-10', placeholder: "Digite uma mensagem", required: 'required' %>
+				  <%= f.text_area :content, data: {textarea: "message"}, class: 'form-group', placeholder: "Digite uma mensagem", required: 'required' %>
 				  
 			  <%= f.hidden_field :user_id, value: current_user.id %>			  
 			  <%= f.hidden_field :chat_id, value: chat.id %>
-				  <div class="button col-xs-offset-9 col-xs-2">
+				  <div class="button">
 				  	<%= f.button 'Enviar', class: 'btnEnviarMensagem',input_html:{id: 'btnMessageSubmit'}  %>	
 				  </div>
 			<%end%>

@@ -61,6 +61,9 @@ class ChatsController < ApplicationController
     elsif params[:option] == 'i'
       get_user_online(params[:option])
       @genero = 'Indefinido'
+    else
+      get_online
+      get_message_no_read
     end   
     render partial: 'online'
      
@@ -94,7 +97,11 @@ class ChatsController < ApplicationController
   end
 
   def get_online    
-    @user_online = UserPerfil.where(is_login: true, block: false).where.not(id: session[:user_id])#.select('is_login, username, avatar, sexo, block')
+    @user = InscriptionInTheEstablishment.where(client_id: session[:local_id])#.group("user_perfil_id").select('"user_perfil_id"')
+    #InscriptionInTheEstablishment.where(client_id: session[:local_id]).find_each do |i|
+    #user.each do |i| 
+      @user_online = UserPerfil.where(is_login: true, block: false).where.not(id: session[:user_id])#.select('is_login, username, avatar, sexo, block')
+    #end
   end
 
   def get_user_online(user)    

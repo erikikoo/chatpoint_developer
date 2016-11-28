@@ -3,27 +3,26 @@
 	<h5 class='text-center'>Não existe usuário <%= @genero %> on-line no momento!</h5>
 <%elsif%>
 	  	<section class='col-xs-12'>
-		    <% @user_online.each do |other_user| %>			  	
-				<%if other_user.id != session[:user_id] %>
-					<section class='container-user-chat'>
-				        <%= get_avatar(other_user, 'chat_index') %>      		
-								      	
-					    <%= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do %>
-						
-						
-						    <%= other_user.user.username %>
-							<% @mesagens.each do |k,v| %> 								 	
-							 		<% if k == other_user.id %>
-							 			<span class="message-no-read">
+		    <% @user_online.each do |other_user| %>		
+		    	<% @user.each do |u| %>	  	
+					<%if other_user.id != session[:user_id] and u.user_perfil_id.eql?(other_user.id)%>
+						<%= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do %>
+							<section class='container-user-chat'>
+						       	<%= get_avatar(other_user, 'chat_index') %>
+								<%= other_user.user.username %>
+								<% @mesagens.each do |k,v| %> 								 	
+									<% if k == other_user.id %>
+										<span class="message-no-read">
 								 			<span>								 				
 								 				<%= "#{v}"%>								 				
 								 			</span>	
-							 			</span>							 	
-							 		<% end %>	
-							<% end %>	
-				 	    <% end %>
-					</section>		      	
-		    	<% end %>
+										</span>							 	
+									<% end %>	
+								<% end %>	
+							</section>		      	
+					 	<% end %>
+			    	<% end %>
+			    <% end %>	
 			<% end %>
 		</section>
 <% end %>

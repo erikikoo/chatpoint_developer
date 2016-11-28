@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-sm-3">
+		<!-- Filtra por cliente -->
+		<%= select_tag("Cliente", options_for_select(@client_options), :include_blank => " Cliente ", class: 'form-control', id:'select_cliente', required: false) %>
+	</div>
+	<div class="col-sm-3">
+		<!-- Filtra por cidade -->
+		<%= select_tag("cidade", options_for_select(@cidade_options), :include_blank => " Cidade ", class: 'form-control', id:'select_cidade', required: false) %>
+	</div>
+	<div class="col-sm-3">
+		<!-- Filtra por bairro -->
+		<%= select_tag("bairro", options_for_select(@bairro_options), :include_blank => " Bairro ", class: 'form-control', id:'select_bairro', required: false) %>
+	</div>
+	<div class="col-sm-3">
+		<!-- Filtra por status -->
+		<%= select_tag("status", options_for_select([['Inativo',0],['Ativo',1]]), :include_blank => " Status ", class: 'form-control', id:'select_status', required: false) %>
+	</div>
+</div>

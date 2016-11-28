@@ -13,7 +13,7 @@ class AdminSessionController < ApplicationController
   	@admin = Admin.find_by(username: admin_params[:username])  	
   	if @admin && @admin.authenticate(admin_params[:password])
   		session[:admin_id] = @admin.id
-  		redirect_to '/admin/principal'
+  		redirect_to '/admin/index'
   	else
   		@error = 'Error de autenticação'
   		render 'new'

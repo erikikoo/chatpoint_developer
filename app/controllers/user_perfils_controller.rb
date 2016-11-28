@@ -1,5 +1,5 @@
 class UserPerfilsController < ApplicationController
-  before_action :set_user_perfil, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_perfil, only: [:show, :edit, :update, :destroy, :block, :unblock]
 
   # GET /user_perfils
   # GET /user_perfils.json
@@ -32,7 +32,7 @@ class UserPerfilsController < ApplicationController
        @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])    
        session[:user_id] = @user_perfil.user.id        
        cookies.signed[:user_id] = @user_perfil.user.id
-       redirect_to chats_path
+       redirect_to "/#{session[:local_name]}/chats"
      else
         render :new
      end
@@ -42,15 +42,13 @@ class UserPerfilsController < ApplicationController
   # PATCH/PUT /user_perfils/1
   # PATCH/PUT /user_perfils/1.json
   def update
-    respond_to do |format|
+    
       if @user_perfil.update(user_perfil_params)
-        format.html { redirect_to @user_perfil, notice: 'User perfil was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user_perfil }
+         redirect_to "/#{session[:local_name]}/chats"
       else
-        format.html { render :edit }
-        format.json { render json: @user_perfil.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
+    
   end
 
   # DELETE /user_perfils/1
@@ -61,6 +59,22 @@ class UserPerfilsController < ApplicationController
       format.html { redirect_to user_perfils_url, notice: 'User perfil was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def admin
+    @user_perfil = UserPerfil.all
+    render 'user_perfils/admin/admin'
+  end
+
+  def block
+     if @user_perfil.update_attribute('block', true)
+        redirect_to action: :admin 
+     end
+  end
+  def unblock
+     if @user_perfil.update_attribute('block', false)        
+        redirect_to action: :admin 
+     end
   end
 
   private

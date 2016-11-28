@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 	before_action :get_client, only: [:edit, :update, :destroy]
 	before_action :get_all_client, only: [:update, :destroy, :admin, :create]
-	
+	before_action :filtro, only: [:update, :destroy, :admin, :create]
 	def new
 		@client = Client.new
 		render 'clients/admin/new'		
@@ -11,40 +11,21 @@ class ClientsController < ApplicationController
 		@client = Client.new(client_params)
 		@client.username = @client.cliente
 		@client.password = '123456'		
-		if @client.save
+		if @client.save			
 			@senha = gerar_senha
-			ClientPassword.create(client_id: @client.id, password_digest: @senha)	
-			
+			ClientPassword.create(client_id: @client.id, password_digest: @senha)			
 			render 'clients/admin/create'
 			
 		else
 			render :new
 		end
 
-		# @client = Client.find_by(username: client_params[:username], password: client_params[:password])
-		# unless @client.nil?
-		# 	if @client
-		# 		session[:client_id] = @client.id
-		# 		redirect_to '/comercio'
-				
-		# 	else
-		# 		@error = "Erro de autenticação! Login e/ou senha incorreto 1"
-	 #      		render 'clients/new'
-	 #      	end
-	 #     else  	
-	 #     	@error = "Erro de autenticação! Login e/ou senha incorreto"
-	 #     	render 'clients/new'
-	 #     end
 	end
 
 	def index
 		@senha = ClientPassword.new
-		get_last_password
+		get_last_password	
 		
-		# if get_last_password.nil?
-		# 	@senha = gerar_senha
-		# 	ClientPassword.create(password_digest: @senha)
-		# end
 	end
 
 	def edit
@@ -105,7 +86,8 @@ class ClientsController < ApplicationController
 	end
 
 	def admin
-		@clients = Client.all
+		filtro
+		
 		@action = 'show';
 		respond_to do |f|
 			f.js {render 'clients/admin/admin' }
@@ -113,6 +95,16 @@ class ClientsController < ApplicationController
 	end
 
 	private
+
+	def filtro
+		get_all_client		
+		@user_perfil = UserPerfil.all
+		
+		@client_options = @clients.collect { |client| [client.cliente, client.id]}		
+		
+		@cidade_options = @user_perfil.collect { |user| [user.cidade, user.id]}
+		@bairro_options = @user_perfil.collect { |user| [user.bairro, user.id]}
+	end
 
 	def get_all_client
 		@clients = Client.all

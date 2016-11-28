@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
        if InscriptionInTheEstablishment.find_by(user_perfil_id: @user.user_perfil.id, client_id: session[:local_id])
         #Client.find(session[:local_id]) && 
          update_login(true)       
-         redirect_to '/chats'
+         redirect_to "/#{session[:local_name]}/chats"
        else          
          @info = "Usuário não possui cadastro neste estabelecimento. " 
          render 'sessions/new'
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
   def registe_to_establishment
     InscriptionInTheEstablishment.create(user_perfil_id: session[:user_id] , client_id: session[:local_id])
     update_login(true)
-    redirect_to '/chats'
+    redirect_to "/#{session[:local_name]}/chats"
   end
 
   private  
