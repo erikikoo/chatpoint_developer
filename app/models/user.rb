@@ -2,7 +2,9 @@ class User < ApplicationRecord
 	has_secure_password
 	#mount_uploader :avatar, AvatarUploader
 	has_many :messages
+	has_many :mensagems
 	has_many :subscriptions
+
 	has_many :chats, through: :subscriptions
 	has_one  :inscription_in_the_establishment
 	

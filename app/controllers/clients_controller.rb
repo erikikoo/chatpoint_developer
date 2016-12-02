@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 	before_action :get_client, only: [:edit, :update, :destroy]
-	before_action :get_all_client, only: [:update, :destroy, :admin, :create]
-	before_action :filtro, only: [:update, :destroy, :admin, :create]
+	before_action :get_all_client, only: [:update, :destroy, :create]
+	
 	def new
 		@client = Client.new
 		render 'clients/admin/new'		
@@ -12,19 +12,23 @@ class ClientsController < ApplicationController
 		@client.username = @client.cliente
 		@client.password = '123456'		
 		if @client.save			
+			@action = 'show'
 			@senha = gerar_senha
-			ClientPassword.create(client_id: @client.id, password_digest: @senha)			
-			render 'clients/admin/create'
-			
+			ClientPassword.create(client_id: @client.id, password_digest: @senha)	
+			ransack		
+			respond_to do |f|
+				f.js {render 'clients/admin/create'}
+			end
+      		
 		else
 			render :new
 		end
-
 	end
 
 	def index
 		@senha = ClientPassword.new
 		get_last_password	
+		
 		
 	end
 
@@ -86,24 +90,36 @@ class ClientsController < ApplicationController
 	end
 
 	def admin
-		filtro
-		
-		@action = 'show';
-		respond_to do |f|
-			f.js {render 'clients/admin/admin' }
+		ransack		 
+			
+		@action = 'show'
+		render 'clients/admin/admin'
+	end
+
+	def select_client
+		@action = 'show'		
+		if params[:q][:status_present] and params[:q][:status_present].downcase.eql?('ativo')
+			params[:q][:status_present] = 1
+		elsif params[:q][:status_present] and params[:q][:status_present].downcase.eql?('inativo')
+			params[:q][:status_present] = 0
+		end	
+		  	
+		@q = Client.ransack(params[:q])
+		@clients = @q.result
+		if params[:q][:status_present].blank? and params[:q][:cliente_cont].blank? and params[:q][:cidade_cont].blank? and params[:q][:bairro_cont].blank?
+			@teste = nil
+		else
+			@teste = true
 		end
+		render 'clients/admin/select_client'
+		
 	end
 
 	private
 
-	def filtro
-		get_all_client		
-		@user_perfil = UserPerfil.all
-		
-		@client_options = @clients.collect { |client| [client.cliente, client.id]}		
-		
-		@cidade_options = @user_perfil.collect { |user| [user.cidade, user.id]}
-		@bairro_options = @user_perfil.collect { |user| [user.bairro, user.id]}
+	def ransack
+		@q = Client.ransack(params[:q])
+	  	@clients = @q.result
 	end
 
 	def get_all_client
@@ -120,6 +136,6 @@ class ClientsController < ApplicationController
 	end
 
 	def client_params
-		params.require(:client).permit(:cliente, :cidade, :bairro, :contato, :fone, :status, :url, :password)
+		params.require(:client).permit(:cliente, :cidade, :bairro, :contato, :fone, :status, :url, :password, :logo)
 	end
 end

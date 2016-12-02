@@ -5,24 +5,21 @@ function messageForm(){
   $(document).keypress(function (e) {
       
         if(e.keyCode == 13) {
-          if(messageBox.is(":focus") && !shiftDown) {
+          if(messageBox.is(":focus") && !shiftDown) {            
             e.preventDefault(); // prevent another \n from being entered
             chatForm.submit();
-            $(chatForm).trigger('reset');
-            
-            $("html body").scrollTop($(".scroll")[0].scrollHeight());
+            $(chatForm).trigger('reset');            
           }
         }  
       
       
   });
 
-  $('.btnEnviarMensagem').click(function (e) {      
-      
-            e.preventDefault(); // prevent another \n from being entered
-            chatForm.submit();
-            $(chatForm).trigger('reset');
-            $(".scroll").scrollTop($(".scroll")[0].scrollHeight());
+  $('.btnEnviarMensagem').click(function (e) {   
+      e.preventDefault(); // prevent another \n from being entered
+      chatForm.submit();
+      $(chatForm).trigger('reset');
+      messageBox.focus();     
       
   });
 
@@ -34,3 +31,5 @@ function messageForm(){
       if(e.keyCode == 16) shiftDown = false;
   });
 }
+
+

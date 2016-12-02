@@ -17,26 +17,14 @@
 
 /* Admin */
 
-.btnAddClient {
-	position: fixed;
-	bottom: 5vw;
-	border-radius: 100%;
-	left: 90vw;	
-	height: 40px;
-	width: 40px;
-	background-color: #306B9E;
+#painel-admin {
+	margin-bottom: 100px;
+}
 
-	box-shadow: 2px 2px 2px #888888;
-	i {
-		position: relative;
-		top: 11px;
-		left: 15px;
-		color: #fff;		
-	}
-	&:hover {
-				background-color: rgba(48, 107, 158,0.8);
-				box-shadow: none;		
-			}
+.btnPesquisa,.btnLimpar {
+	position: relative;
+	top: 25px;
+
 }
 
 

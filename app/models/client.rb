@@ -1,4 +1,5 @@
 class Client < ApplicationRecord
+	mount_uploader :logo, LogoUploader
 	#has_secure_password
 	has_many :users
 	has_many :messages
@@ -7,6 +8,6 @@ class Client < ApplicationRecord
 	has_many :client_passwords, dependent: :destroy
     has_many :inscription_in_the_establishments, dependent: :destroy
 	
-	validates :cliente,:cidade,:bairro,:contato,:fone,:status, presence: true
+	validates :cliente,:cidade,:bairro,:contato,:fone, presence: true
 	
 end

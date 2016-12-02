@@ -1,5 +1,7 @@
 <div class="option">
-	<%= render partial: 'user_perfils/admin/menu_option'%>
+	<!-- Verificar se tem necessidade --> 
+	<% render partial: 'user_perfils/admin/menu_option'%>
+	<%= render partial: 'user_perfils/admin/filter'%>
 </div>
 
 <% if @user_perfil.nil? %>
@@ -7,25 +9,24 @@
 <% else %>
 	<table class='table table-striped table-hover'>		
 			<thead class='text-center'>
-				<th>Cliente</th>
+				
 				<th>Cidade</th>
 				<th>Bairro</th>				
 				<th>Fone</th>
 				<th>Idade</th>
 				<th>Sexo</th>
-				<th>Status</th>
+				<th>online</th>
 				<th>Ações</th>
 			</thead>
 			<tbody>				
 					<% @user_perfil.each do |user| %>						
-						<tr >
-							<td>Cliente</td>							
+						<tr>							
 							<td><%= user.cidade %></td>	
 							<td><%= user.bairro %></td>	
 							<td><%= user.celular %></td>								
-							<td>idade</td>															
-							<td><%= user.sexo %></td>	
-							<td><%= user.is_login %></td>	
+							<td><%= calcIdade(user.nascimento.year)%></td>				
+							<td><%= readSexo(user.sexo) %></td>	
+							<td><%= status(user.is_login) %></td>	
 							<td>
 								<% if user.block %>
 									<%= link_to 'Desbloquear',"/unblock/user/#{user.id}", 				        
@@ -43,3 +44,17 @@
 			</tbody>
 	</table>
 <% end %>
+<script>
+		
+		$(".btnLimpar").click(function(event) {			
+			
+			$("#q_cidade_cont").val('');
+			$("#q_bairro_cont").val('');
+			$("#q_nascimento_present").val('');
+			$("#q_block_present").val('');
+			$("#q_sexo_cont").val('');
+			$("#user_perfil_search").submit();
+			$(this).removeClass('btnLimpar').addClass('btnPesquisa');
+		});
+		
+	</script>

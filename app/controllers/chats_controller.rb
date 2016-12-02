@@ -51,8 +51,8 @@ class ChatsController < ApplicationController
     render :user_online
   end
 
-  def change_sexo    
-    if  params[:option] == 'm' 
+  def change_sexo      
+    if params[:option] == 'm' 
       get_user_online(params[:option])
       @genero = 'Masculino'
     elsif params[:option] == 'f'
@@ -60,12 +60,13 @@ class ChatsController < ApplicationController
       @genero = 'Feminino'
     elsif params[:option] == 'i'
       get_user_online(params[:option])
-      @genero = 'Indefinido'
+      @genero = 'Indefinido'         
     else
       get_online
-      get_message_no_read
+      get_message_no_read    
     end   
-    render partial: 'online'
+     
+    render :user_online
      
   end
 
@@ -75,6 +76,7 @@ class ChatsController < ApplicationController
   end
 
   private
+ 
   def find_chat(second_user)
     chats = current_user.chats
     chats.each do |chat|
@@ -102,8 +104,7 @@ class ChatsController < ApplicationController
   end
 
   def get_user_online(user)    
-    @user_online = UserPerfil.where(sexo: user, is_login: true).where.not(id: current_user)
-    
+    @user_online = UserPerfil.where(sexo: user, is_login: true, block: false).where.not(id: session[:user_id])
   end
 
 end

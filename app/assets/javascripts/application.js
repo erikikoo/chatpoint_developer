@@ -16,6 +16,8 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require twitter/bootstrap/modal
+
+//= require jquery.remotipart
 //= require turbolinks
 //= require bootstrap-toggle
 //= require_tree .
@@ -38,14 +40,17 @@ jQuery(document).ready(function($) {
 		},5000);
 	}
 
+	
+	
+	
 
-	$('#client_cliente').blur(function(event) {
-		 var cliente = $(this).value();
-		// var url = window.location.pathname +"/"+cliente;
-		// $("#client_url").attr('disabled', 'disabled').value(url);
-		alert(cliente);
+	// $('#client_cliente').blur(function(event) {
+	// 	 var cliente = $(this).value();
+	// 	// var url = window.location.pathname +"/"+cliente;
+	// 	// $("#client_url").attr('disabled', 'disabled').value(url);
+	// 	alert(cliente);
 
-	});
+	// });
 });
 
 function getUserOnline() {
@@ -63,6 +68,9 @@ function getUserOnline() {
 	});
 	
 }
+
+
+
 
 
 

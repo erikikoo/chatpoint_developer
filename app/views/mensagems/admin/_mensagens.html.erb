@@ -1,0 +1,43 @@
+<%= render partial: 'mensagems/admin/menu_option'%>
+<%= render partial: 'mensagems/admin/menu'%>
+<% if @mensagens.nil? %>
+		Você não possui mensagens cadastrados
+	<% else %>
+			
+		<% @mensagens.each do |message| %>
+			<div class="panel panel-default">
+				<div class="panel-heading"><%= message.title %></div>
+
+				<div class="panel-body">
+			    	<% unless message.all %>
+			    		<strong><p><%= message.user.username %></p></strong>
+			    	<% end %>
+			    	<%= message.content %>
+			    	<p></p>
+			    	<p class='text-right'>
+			    		<% if session[:sistema]%>
+			    			<%= link_to 'Editar', edit_mensagem_path(message), remote: true, class: 'btn btn-default'  %>
+						<% end %>
+						<%= link_to 'Apagar', mensagem_path(message), 
+						    method: :delete, 
+						    remote: true,
+						    data: { confirm: 'Deseja prosseguir?' }, class: 'btn btn-default' %>	
+			    	</p>						
+			  	</div>				
+			</div>				
+			
+		<% end %>			
+	<% end %>
+
+	<script>
+		
+		$(".btnLimpar").click(function(event) {			
+			$("#q_cliente_cont").val('');
+			$("#q_cidade_cont").val('');
+			$("#q_bairro_cont").val('');
+			$("#q_status_present").val('');
+			$("#client_search").submit();
+			$(this).removeClass('btnLimpar').addClass('btnPesquisa');
+		});
+		
+	</script>

@@ -6,4 +6,5 @@ jQuery(document).ready(function($) {
 		alert(cliente);
 
 	});
+	
 });

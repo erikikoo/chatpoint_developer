@@ -1,0 +1,19 @@
+// Place all the styles related to the mensagems controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+aside {
+	a:active, a:visited {
+		color: #fff;
+	}
+
+}
+form {
+	input[type='submit'] {
+		margin: 20px 0 ;
+	}
+	textarea {
+		resize: none;
+		height: 40vh !important;
+	}
+}

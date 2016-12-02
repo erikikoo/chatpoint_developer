@@ -21,5 +21,20 @@ module ApplicationHelper
 		end	
 	end	
 	
+	def readSexo(s)
+		if s.eql?('m')
+			'Masculino'
+		else
+			'Feminino'
+		end		
+	end
 
+	def calcIdade(i)		
+		nasc =  Date.today.year - i
+		if nasc < 1
+		 	nasc.to_s + " ano"
+		 elsif nasc 	> 1
+		 	nasc.to_s + ' anos'
+		 end	
+	end
 end

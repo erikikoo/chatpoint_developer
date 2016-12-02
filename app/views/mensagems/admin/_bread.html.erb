@@ -1,0 +1,9 @@
+
+<% if @action == 'show' %>
+	<li><%= link_to 'Admin', '/admin/index' %></li>
+	<li class='active'>Mensagens</li>	
+<% elsif @action == 'update' %>
+	<li><%= link_to 'Admin', '/admin/index' %></li>
+	<li><%= link_to 'Mensagens', '/admin/mensagens', remote: true %></li>
+	<li class='active'>Editando <%= @mensagem.title %></li>
+<% end %>

@@ -25,12 +25,10 @@ class UserPerfilsController < ApplicationController
   # POST /user_perfils
   # POST /user_perfils.json
   def create
-    @user_perfil = UserPerfil.new(user_perfil_params)        
-    
-     if @user_perfil.save    
-    
-       @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])    
-       session[:user_id] = @user_perfil.user.id        
+    @user_perfil = UserPerfil.new(user_perfil_params)
+     if @user_perfil.save
+       @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])
+       session[:user_id] = @user_perfil.user.id
        cookies.signed[:user_id] = @user_perfil.user.id
        redirect_to "/#{session[:local_name]}/chats"
      else
@@ -62,6 +60,8 @@ class UserPerfilsController < ApplicationController
   end
 
   def admin
+    @q = UserPerfil.ransack(params[:q])
+    @clients = @q.result.includes(:inscription_in_the_establishments)
     @user_perfil = UserPerfil.all
     render 'user_perfils/admin/admin'
   end
@@ -75,6 +75,25 @@ class UserPerfilsController < ApplicationController
      if @user_perfil.update_attribute('block', false)        
         redirect_to action: :admin 
      end
+  end
+
+  def select_user
+    @action = 'show'    
+    if params[:q][:block_present] and params[:q][:block_present].downcase.eql?('bloqueado')
+      params[:q][:block_present] = 1
+    elsif params[:q][:block_present] and params[:q][:block_present].downcase.eql?('desbloqueado')
+      params[:q][:block_present] = 0
+    end 
+     if params[:q][:cidade_cont].blank? and params[:q][:bairro_cont].blank? and params[:q][:idade_cont].blank? and params[:q][:sexo_cont].blank? and params[:q][:block_present].blank? #[:block_present].empty? && params[:q][:sexo_cont].empty? && params[:q][:nascimento_cont].empty? && params[:q][:bairro_cont].empty? && params[:q][:cidade_cont].empty?
+       @teste = nil
+     else
+       @teste = true
+     end
+        
+    @q = UserPerfil.ransack(params[:q])
+    @user_perfil = @q.result
+    render 'user_perfils/admin/select_user'
+    
   end
 
   private

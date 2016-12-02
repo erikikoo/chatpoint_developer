@@ -1,11 +1,11 @@
 <div class="row" id='chat-menu'>
-  <section class="col-xs-10 col-sm-11" >      
+  <section >      
     <%= simple_form_for('sexo') do |f|%>
         <%= f.input "Sexo",label: false, :collection => [["Masculino","m"],['Feminino', 'f'],['Indefinido', 'i']], :include_blank => " Selecione ", :input_html => {class: 'form-control', id:'select_sexo'}, required: false %>
       <% end %> 
   
   </section>
-  <section class="col-xs-2 col-sm-1">         
+  <section class="col-xs-1 col-sm-1">         
               <a class="btn btn-controle-login dropdown-toggle" data-toggle="dropdown" href="#"><i class='glyphicon glyphicon-menu-hamburger'></i></a> 
               
               <ul class="dropdown-menu"> 

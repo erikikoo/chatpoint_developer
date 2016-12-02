@@ -70,3 +70,10 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 gem 'redis', '~> 3.0'
+
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
+#upload via ajax
+gem 'remotipart', '~> 1.2'
+#paginação
+gem 'will_paginate', github: 'jonatack/will_paginate'

@@ -1,0 +1,40 @@
+<div class="row">	
+	<%= search_form_for(@q ,remote: true, url: '/select_user', :method => :get ) do |f| %>
+	
+	
+	<div class="col-sm-2">
+		<!-- Filtra por cidade -->
+		<%= f.label :cidade_cont, 'Cidade' %>
+  		<%= f.search_field :cidade_cont, class: 'form-control' %>
+	</div>
+	<div class="col-sm-2">
+		<!-- Filtra por bairro -->
+		<%= f.label :bairro_cont, 'Bairro' %>
+  		<%= f.search_field :bairro_cont, class: 'form-control' %>
+	</div>
+	<div class="col-sm-2">
+		<!-- Filtra por status -->
+		<%= f.label :idade, 'Idade' %>
+  		<%= f.search_field :nascimento_present, class: 'form-control '%>
+	</div>
+	<div class="col-sm-2">
+		<!-- Filtra por status -->
+		<%= f.label :sexo_cont, 'Sexo' %>
+  		<%= f.search_field :sexo_cont, class: 'form-control ' %>
+	</div>
+
+	<div class="col-sm-2">
+		<!-- Filtra por status -->
+		<%= f.label :block_present, 'Bloqueado' %>
+  		<%= f.search_field :block_present, class: 'form-control ', placeholder: 'Bloqueado ou desbloqueado' %>
+	</div>
+
+	<div class="col-sm-2">		
+		<% if @teste.nil? %>
+			<%= f.submit 'Pesquisa', class: 'btn btn-default btnPesquisa'  %>
+		<% else %>	
+			<%= f.submit 'Limpar', class: 'btn btn-default btnLimpar'  %>
+		<% end %>	
+	</div>
+	<% end %>
+</div>

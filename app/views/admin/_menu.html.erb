@@ -1,11 +1,14 @@
 <div class="row">	
-	<section class="adm-btn-index col-md-4">
+	<section class="adm-btn-index col-md-3">
 		<%= link_to 'Gerenciar Cliente', '/admin/clientes', remote: true, class: 'btn btn-default btn-lg btn-block' %>			
 	</section>
-	<section class="adm-btn-index col-md-4">
+	<section class="adm-btn-index col-md-3">
 		<%= link_to 'Gerenciar Usuários', '/admin/usuarios', remote: true, class: 'btn btn-default btn-lg btn-block' %>			
 	</section>
-	<section class="adm-btn-index col-md-4">
+	<section class="adm-btn-index col-md-3">
 		<%= link_to 'Mensagens do Sistema', '/admin/mensagens', remote: true, class: 'btn btn-default btn-lg btn-block' %>			
+	</section>
+	<section class="adm-btn-index col-md-3">
+		<%= link_to 'Logout', admin_session_path(session[:admin_id]), method: :delete, class: 'btn btn-default btn-lg btn-block' %>	
 	</section>
 </div>
