@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   #before_action :get_message_no_read, only: [:change_sexo]
   #caches_action :refresh_user_and_msn
 
-  before_action :get_message_no_read, only: [:index, :user_online, :change_sexo]
+  #before_action :get_message_no_read, only: [:index, :user_online, :change_sexo]
   def index
     chats = current_user.chats
     @existing_chats_users = current_user.existing_chats_users 
@@ -56,9 +56,8 @@ class ChatsController < ApplicationController
   # end
 
   def change_sexo    
-    get_message_no_read    
-    inscrito_em
-    
+    get_message_no_read
+    inscrito_em    
     params[:option].nil? ? session[:option] = nil : session[:option] = params[:option];
     
     if session[:option] == 'm' 
