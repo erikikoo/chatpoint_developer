@@ -1,6 +1,6 @@
 production:
   adapter: redis
-  url: redis://redistogo:781ef13ea49b67784918d1f6ca4131ed@crestfish.redistogo.com:10579/
+  url: redis://redistogo:19845ff366315e959b7473e959cbfe25@sculpin.redistogo.com:9614/
 
 development:
   adapter: async
