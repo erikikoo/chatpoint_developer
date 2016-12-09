@@ -49,12 +49,6 @@ class ChatsController < ApplicationController
     get_message_no_read
   end
 
-  # def refresh_user_and_msn
-  #   get_online
-  #   get_message_no_read
-  #   render :user_online
-  # end
-
   def change_sexo    
     get_message_no_read
     inscrito_em    
