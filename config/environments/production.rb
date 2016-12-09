@@ -85,7 +85,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.i18n.available_locales = 'pt-BR'
-  config.web_socket_server_url = "wss://murmuring-tor-42389.herokuapp.com/cable" 
-  config.action_cable.allowed_request_origins = ['https://murmuring-tor-42389.herokuapp.com', 'http://murmuring-tor-42389.herokuapp.com']
+  config.web_socket_server_url = "wss://frozen-hollows-31256.herokuapp.com/cable" 
+  config.action_cable.allowed_request_origins = ['https://frozen-hollows-31256.herokuapp.com', 'http://frozen-hollows-31256.herokuapp.com']
   
 end
