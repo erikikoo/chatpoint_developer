@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :clients
 
-  resources :sessions, only:[:new, :destroy, :create]
+  resources :sessions, only:[:new, :destroy, :create], :path_names => {:new => 'login', :destroy => 'logout', :create => 'cadastrar' }
   resources :clients_sessions, only:[:new, :destroy, :create]  
   resources :admin_session, only:[:new, :destroy, :create]
 
@@ -56,7 +56,8 @@ Rails.application.routes.draw do
  
   get '/registe_to_establishment'  => "sessions#registe_to_establishment"
 
-
+  get '/new/mensagem/:location' => 'mensagems#new'
+  get '/new/mensagem/:location' => 'mensagems#create'
   #admin client
    get '/select_client'            => 'clients#select_client'
    get '/select_user'              => 'user_perfils#select_user'
