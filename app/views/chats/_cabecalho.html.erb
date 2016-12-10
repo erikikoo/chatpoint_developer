@@ -1,7 +1,7 @@
 <div class="row" id='chat-menu'>
   <section >      
     <%= simple_form_for('sexo') do |f|%>
-        <%= f.input "Sexo",label: false, :collection => [["Masculino","m"],['Feminino', 'f'],['Indefinido', 'i']], :include_blank => " Selecione ", :input_html => {class: 'form-control', id:'select_sexo'}, required: false %>
+        <%= f.input "Sexo",label: false, :collection => [["Todos","t"],["Masculino","m"],['Feminino', 'f'],['Indefinido', 'i']], :include_blank => " Selecione ", :input_html => {class: 'form-control', id:'select_sexo'}, required: false %>
       <% end %> 
   
   </section>
