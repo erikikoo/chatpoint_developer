@@ -47,47 +47,38 @@ class ChatsController < ApplicationController
 
   def change_sexo    
     get_message_no_read
-    inscrito_em        
-    #params[:option].nil? ? session[:option] = nil : 
+    inscrito_em           
    
-      session[:option] = params[:option];   
+    session[:option] = params[:option];   
    
 
-      if session[:option].eql?('m')
-        session[:genero] = 'Masculino'
-        get_user_online(params[:option])
-        #render partial: 'online'
-
-      elsif session[:option].eql?('f')
-        session[:genero] = 'Feminino'
-        get_user_online(params[:option])
-        #render partial: 'online'
-      elsif session[:option].eql?('i')
-        session[:genero] = 'Indefinido'
-        get_user_online(params[:option])
-        #render partial: 'online'
-      elsif session[:option].eql?('t')
-         get_user_online         
-      else
-       get_user_online
-       # render action: 'user_online'
-        #render :user_online
-         #render partial: 'online'
-      end
-      render partial: 'online'
+    if session[:option].eql?('m')
+      session[:genero] = 'Masculino'
+      get_user_online(params[:option])
+    elsif session[:option].eql?('f')
+      session[:genero] = 'Feminino'
+      get_user_online(params[:option])        
+    elsif session[:option].eql?('i')
+      session[:genero] = 'Indefinido'
+      get_user_online(params[:option])        
+    elsif session[:option].eql?('t') or params[:option].nil?
+       get_user_online               
+    end
+    render partial: 'online'
   end
 
   def teste
-    get_message_no_read
+     get_message_no_read
     inscrito_em
     if session[:option] and session[:option] != 't'      
-      get_user_online(session[:option])
-      #render partial: 'online'
+      get_user_online(session[:option])      
       render :user_online
     else
       get_user_online
-      render :user_online
+      render :user_online  
     end
+   
+    
   end
 
   

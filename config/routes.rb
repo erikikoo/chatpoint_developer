@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :messages, only:[:create]
 
   resources :users, only:[:new, :create, :block,:edit, :update], :path => "usuarios" do
-   resources :chats, only: [:index, :show, :create], :path => "chat"
+   resources :chats, only: [:index, :show, :create], :path => "chats"
   end 
 
   resources :clients, :path => 'cliente'
