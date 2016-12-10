@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :mensagems
-  get '/user-online'   => 'chats#change_sexo'
+  get '/user-online'   => 'chats#teste'
   resources :user_perfils
   root 'welcome#login'  
   #root 'chats#index'
