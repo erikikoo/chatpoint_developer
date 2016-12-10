@@ -1,7 +1,7 @@
 production:
   adapter: redis
   #este é onde está o produto final
-  url: redis://redistogo:8b815c6ad4b3e63d83ed8afa907b74a0@sculpin.redistogo.com:9614/
+  url: redis://redistogo:9e1ebefbb768b188ce000f759a2ab2b2@sculpin.redistogo.com:9614/
   
   
 
