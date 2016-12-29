@@ -7,10 +7,10 @@ class User < ApplicationRecord
 
 	has_many :chats, through: :subscriptions
 	has_one  :inscription_in_the_establishment
-	
+		
 	validates :username, uniqueness: true
   	validates :password, confirmation: true
-  	validates :password_confirmation, presence: true
+  	validates :password_confirmation, :username, presence: true
 
 	belongs_to :user_perfil, optional: true
 	

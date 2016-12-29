@@ -62,9 +62,10 @@ jQuery(document).ready(function($) {
 
 	setInterval(function(){
 		userSetTimeOut();
-	}, 2700000);
+	},2700000);
 	
-  
+  	
+  	
 
 });
 

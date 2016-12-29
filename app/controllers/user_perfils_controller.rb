@@ -27,19 +27,22 @@ class UserPerfilsController < ApplicationController
   # POST /user_perfils.json
   def create
     @user_perfil = UserPerfil.new(user_perfil_params)
-     #idade = (Date.today.year - to_d(@user_perfil.nascimento.year))
-     #if idade > 17 
+     idade = (Date.today.year - @user_perfil.nascimento.year) unless @user_perfil.nascimento.nil?
+     
+      if idade > 17
        if @user_perfil.save
-         @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])
-         session[:user_id] = @user_perfil.user.id
-         cookies.signed[:user_id] = @user_perfil.user.id
-         redirect_to "/#{session[:local_name]}/chats"
+           @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])
+           session[:user_id] = @user_perfil.user.id
+           cookies.signed[:user_id] = @user_perfil.user.id
+           redirect_to "/#{session[:local_name]}/chats"
+         else          
+           render :new 
+         end  
        else
+          @user_perfil.errors.add(:nascimento,'Você precisa ter +18 anos para acessar este serviço')
           render :new
        end
-      #else
-      #  flash.now[:error] = 'Você precisa ter 18+ para acessar este serviço'
-      #end 
+     
     
   end
 

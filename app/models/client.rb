@@ -9,5 +9,5 @@ class Client < ApplicationRecord
     has_many :inscription_in_the_establishments, dependent: :destroy
 	
 	validates :cliente,:cidade,:bairro,:contato,:fone, presence: true
-	
+	validates :fone, length: { in: 8..11 }
 end

@@ -6,9 +6,11 @@
     
     <%= f.input :celular, input_html: {class: 'form-control'} %>
     <%= f.input :email, as: :email,input_html: {class: 'form-control'} %>
-    
-    <%= f.input :nascimento ,as: :string, input_html: { class: 'form-control', "data-provide" => "datepicker" } %>
-    
+    <% if @user_perfil.errors[:nascimento] %>
+      <%= f.input :nascimento ,as: :string, input_html: { class: 'form-control', "data-provide" => "datepicker" } %>
+    <% else %>
+      <%= f.input :nascimento ,as: :string, input_html: { class: 'form-control', "data-provide" => "datepicker" } %>
+    <% end %>
     <%= f.collection_radio_buttons :sexo, [['m', 'Masculino'] ,['f', 'Feminino'], ['i','Indeferido']], :first, :last, input_html: { class: 'form-control' } %>
     
     <%= f.input :cidade, input_html: {class: 'form-control'} %>

@@ -10,9 +10,9 @@
 					<th>Bairro</th>
 					<th>Contato</th>
 					<th>Fone</th>
-					<th>Url</th>
+					<!--<th>Url</th>-->
 					<th>Status</th>
-					<th>usuarios online</th>
+					<!--<th>usuarios online</th>-->
 					<th>Ações</th>
 				</thead>
 				<tbody>				
@@ -24,11 +24,11 @@
 								<td><%= client.bairro %></td>	
 								<td><%= client.contato %></td>	
 								<td><%= client.fone %></td>	
-								<td><%= client.url %></td>	
+								<!--<td><% client.url %></td>	-->
 								<td class='text-center'><%= status(client.status) %></td>	
 								
 								
-								<td class='text-center'>online</td>
+								<!--<td class='text-center'>online</td>-->
 								
 								<td>
 									<%= link_to 'Editar', edit_client_path(client), remote: true  %>

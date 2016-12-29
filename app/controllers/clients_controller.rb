@@ -86,8 +86,7 @@ class ClientsController < ApplicationController
 	end
 
 	def admin
-		ransack		 
-			
+		ransack		 		
 		@action = 'show'
 		render 'clients/admin/admin'
 	end
