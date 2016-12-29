@@ -29,7 +29,7 @@ class UserPerfilsController < ApplicationController
     @user_perfil = UserPerfil.new(user_perfil_params)
      idade = (Date.today.year - @user_perfil.nascimento.year) unless @user_perfil.nascimento.nil?
      
-      if idade > 17
+      if !idade.nil? and idade > 17
        if @user_perfil.save
            @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])
            session[:user_id] = @user_perfil.user.id
@@ -39,7 +39,8 @@ class UserPerfilsController < ApplicationController
            render :new 
          end  
        else
-          @user_perfil.errors.add(:nascimento,'Você precisa ter +18 anos para acessar este serviço')
+          @user_perfil.errors.add(:nascimento,'não pode ficar em branco') if idade.nil?
+          @user_perfil.errors.add(:nascimento,'Você precisa ter +18 anos para acessar este serviço') if !idade.nil? and idade < 17
           render :new
        end
      
