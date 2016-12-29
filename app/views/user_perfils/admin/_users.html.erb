@@ -29,11 +29,11 @@
 							<td><%= status(user.is_login) %></td>	
 							<td>
 								<% if user.block %>
-									<%= link_to 'Desbloquear',"/unblock/user/#{user.id}", 				        
+									<%= link_to 'Desbloquear',"/unblock/user/#{user.id}/admin", 				        
 								        remote: true,
 								        data: { confirm: 'Deseja prosseguir?' } %>
 								<% else %>
-									<%= link_to 'Bloquear',"/block/user/#{user.id}", 				        
+									<%= link_to 'Bloquear',"/block/user/#{user.id}/admin", 				        
 								        remote: true,
 								        data: { confirm: 'Deseja prosseguir?' } %>
 								<% end %>        

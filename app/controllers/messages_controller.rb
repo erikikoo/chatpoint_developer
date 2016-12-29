@@ -13,8 +13,7 @@ class MessagesController < ApplicationController
         message.status = '1'    
     end 
 
-    if message.save
-     
+    if message.save     
       ActionCable.server.broadcast "messages_#{message_params[:chat_id]}",
       #broadcasting out to messages channel, which all chats are linked to messages channel
       message: message.content,
@@ -29,6 +28,8 @@ class MessagesController < ApplicationController
       redirect_to chats_path
     end
   end
+
+  
 
   private
     def message_params

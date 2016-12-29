@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   
   resources :mensagems
-  get '/user-online'   => 'chats#teste'
+  get '/setTimeOut' => 'users#setTimeOut'
+  get '/user-online'   => 'chats#refresh'
   resources :user_perfils
   root 'welcome#login'  
   #root 'chats#index'
   #temporary root path for now 
   resources :messages, only:[:create]
+
+  
 
   resources :users, only:[:new, :create, :block,:edit, :update], :path => "usuarios" do
    resources :chats, only: [:index, :show, :create], :path => "chats"
@@ -40,7 +43,7 @@ Rails.application.routes.draw do
   post '/' => 'welcome#create'
 
 #menu index
-  get '/conversa'          => 'chats#converca'
+  get '/bloqueado'         => 'chats#bloqueado'
   get '/online'            => 'chats#user_online'
 
 
@@ -53,8 +56,8 @@ Rails.application.routes.draw do
   get '/admin/mensagens'  => 'mensagems#admin' 
   
 
-  get 'block/user/:id'    => 'user_perfils#block'
-  get 'unblock/user/:id'  => 'user_perfils#unblock'
+  get 'block/user/:id/:target'    => 'user_perfils#block'
+  get 'unblock/user/:id/:target'  => 'user_perfils#unblock'
   #get '/users/:id/edit'   => 'users#edit'
   #post '/users/:id'       => 'users#update'
   get '/select_sexo'      => 'chats#change_sexo'

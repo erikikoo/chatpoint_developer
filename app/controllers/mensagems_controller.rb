@@ -9,7 +9,8 @@ class MensagemsController < ApplicationController
 
   # GET /mensagems/1
   # GET /mensagems/1.json
-  def show
+  def show         
+
   end
 
   # GET /mensagems/new
@@ -37,6 +38,7 @@ class MensagemsController < ApplicationController
     if session[:admin_id]
       @mensagem.user_id =  session[:admin_id]
       @mensagem.all = true
+      @mensagem.email = nil
     elsif session[:location]         
         @mensagem.user_id = current_user.id
         @mensagem.all = false
@@ -116,6 +118,6 @@ class MensagemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mensagem_params
-      params.require(:mensagem).permit(:user_id, :content, :all, :title)
+      params.require(:mensagem).permit(:user_id, :content, :email,:all, :title)
     end
 end

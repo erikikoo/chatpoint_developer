@@ -12,9 +12,14 @@
 			    	<% unless message.all %>
 			    		<strong><p><%= message.user.username %></p></strong>
 			    	<% end %>
-			    	<%= message.content %>
+			    	<p>
+			    		<%= message.content %>
+			    	</p>			    	
+			    	<% if message.email %>
+			    		<strong><p>email: <%= message.email %></p></strong>
+			    	<% end %>
 			    	<p></p>
-			    	<p class='text-right'>
+			    	<p class='text-right'>			    		
 			    		<% if session[:sistema]%>
 			    			<%= link_to 'Editar', edit_mensagem_path(message), remote: true, class: 'btn btn-default'  %>
 						<% end %>

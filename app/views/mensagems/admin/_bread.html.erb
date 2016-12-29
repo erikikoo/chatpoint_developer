@@ -1,9 +1,13 @@
 
-<% if @action == 'show' %>
+<% if @action.eql?('show') %>
 	<li><%= link_to 'Admin', '/admin/index' %></li>
 	<li class='active'>Mensagens</li>	
-<% elsif @action == 'update' %>
+<% elsif @action.eql?('update') %>
 	<li><%= link_to 'Admin', '/admin/index' %></li>
 	<li><%= link_to 'Mensagens', '/admin/mensagens', remote: true %></li>
 	<li class='active'>Editando <%= @mensagem.title %></li>
+<% elsif @action.eql?('responder') %>
+	<li><%= link_to 'Admin', '/admin/index' %></li>
+	<li><%= link_to 'Mensagens', '/admin/mensagens', remote: true %></li>
+	<li class='active'>Respondendo <%= @mensagem.title %></li>
 <% end %>

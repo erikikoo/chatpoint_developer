@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require cable
 //= require moment
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js
@@ -27,6 +27,8 @@
 
 $(document).on('ready page:change', function() {
   $('input[type="checkbox"].toggle').bootstrapToggle(); // assumes the checkboxes have the class "toggle"
+
+    $('.block a').tooltip();
 
 
 });
@@ -54,10 +56,33 @@ jQuery(document).ready(function($) {
 		$("message-content").focus();
 		msnToBotton(alt);
 	}
+
+
+	// desconecta user inativo por 45 minutos
+
+	setInterval(function(){
+		userSetTimeOut();
+	}, 2700000);
 	
   
 
 });
+
+function userSetTimeOut() {
+	$.ajax({
+		url: '/setTimeOut'		
+	})
+	.done(function() {
+		console.log("success");
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+}
 
 function getUserOnline() {
 	$.ajax({

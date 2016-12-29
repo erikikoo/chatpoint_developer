@@ -6,12 +6,13 @@
 
 	  <div class="form-inputs">
 	    <%= f.input :title, label: "Titulo", input_html: {class: 'form-control'} %> 
+	    <%= f.input :email, label: "Email", input_html: {class: 'form-control'} %> 
 	    <%= f.input :content, label: "Conteúdo", input_html: {class: 'form-control new-mensagem-sistem'} %>
 	    
 	  </div>
 
 	  <div class="form-actions">
-	    <%= f.button :submit %>
+	    <%= f.button :submit, 'Enviar' %>
 	  </div>
 	<% end %>
 </section>

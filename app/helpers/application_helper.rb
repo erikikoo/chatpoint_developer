@@ -37,4 +37,22 @@ module ApplicationHelper
 		 	nasc.to_s + ' anos'
 		 end	
 	end
+
+	def display_user(u, msn={})
+		link_to(user_chats_path(current_user, :other_user => u.id), method: :post) do 
+            raw("<section class='container-user-chat'>")
+                get_avatar(u, 'chat_index')
+                u.user.username 
+                msn.each do |k,v|
+                    if k == u.id
+                        raw('<span class="message-no-read">')
+                            raw('<span>')
+                            	 "#{v}"
+                            raw('</span>')
+                        raw('</span>')    
+                    end
+                end  
+            raw('</section>')
+        end
+	end
 end

@@ -1,14 +1,21 @@
 require 'securerandom'
 
 class ChatsController < ApplicationController    
+  
+  before_action :get_online, only: [:user_online]
   def index
     chats = current_user.chats
     @existing_chats_users = current_user.existing_chats_users 
+    
     _offline = Subscription.find_by(user_id: current_user.id)
     _offline.update(active: 0) unless _offline.nil?
+    
+    get_user_block
+    
     get_online
     get_message_no_read    
     inscrito_em
+    @sys_mensagem = Mensagem.where(all: true).order(created_at: :desc).last
   end
 
   def create
@@ -33,24 +40,25 @@ class ChatsController < ApplicationController
     @message = Message.new
   end
 
-  def converca
-    chats = current_user.chats
-    @existing_chats_users = current_user.existing_chats_users
+  def bloqueado
+    get_online
+    get_user_block
   end
 
   def user_online
     chats = current_user.chats    
     @existing_chats_users = current_user.existing_chats_users
     Subscription.where(user_id: current_user).update(active: false)
-    get_online    
+    get_user_block
+    get_online
+    get_message_no_read    
   end
 
   def change_sexo    
     get_message_no_read
     inscrito_em           
-   
-    session[:option] = params[:option];   
-   
+    get_user_block
+    session[:option] = params[:option];    
 
     if session[:option].eql?('m')
       session[:genero] = 'Masculino'
@@ -67,18 +75,17 @@ class ChatsController < ApplicationController
     render partial: 'online'
   end
 
-  def teste
-     get_message_no_read
-    inscrito_em
+  def refresh
+    get_message_no_read
+    inscrito_em    
+    get_user_block
     if session[:option] and session[:option] != 't'      
       get_user_online(session[:option])      
       render :user_online
     else
       get_user_online
       render :user_online  
-    end
-   
-    
+    end   
   end
 
   
@@ -107,20 +114,21 @@ class ChatsController < ApplicationController
   end
 
   def get_online    
-    @user_online = UserPerfil.where(is_login: true, block: false).where.not(id: current_user)    
+    @user_online = UserPerfil.where(is_login: true).where.not(id: current_user)
   end
 
-  def get_user_online(user='') 
-    
+  def get_user_online(user='')     
     if user.blank?  
-      get_online  
-      #render :user_online  
+      get_online        
     else
-      @user_online = UserPerfil.where(sexo: user, is_login: true, block: false).where.not(id: current_user)
-      #render partial: 'online'      
+      @user_online = UserPerfil.where(sexo: user, is_login: true).where.not(id: current_user)
     end 
     
     
+  end
+
+  def get_user_block
+    @blocks = UserBlock.where(user_perfil_id: session[:user_id]).group('user_perfil_blocked').count
   end
 
   def inscrito_em

@@ -37,3 +37,20 @@
 <br>
 
 <%= link_to 'New User Perfil', new_user_perfil_path %>
+
+
+<%= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do %>
+                              <section class='container-user-chat'>
+                                 <%= get_avatar(other_user, 'chat_index') %>
+                                <%= other_user.user.username %>
+                                <% @mesagens.each do |k,v| %>                   
+                                  <% if k == other_user.id %>
+                                    <span class="message-no-read">
+                                      <span>
+                                        <%= "#{v}"%>    
+                                      </span> 
+                                    </span>               
+                                  <% end %> 
+                                <% end %> 
+                              </section>            
+                            <% end %>

@@ -1,0 +1,31 @@
+<div class="row">
+	<% if @user_online.nil? or @blocks.empty? %>
+		<h5 class='text-center'>Não existe usuário bloqueados!</h5>
+	<%else%>
+		  	<section class='col-xs-12'>
+			    <% @user_online.each do |other_user| %>
+					<% if other_user.id != session[:user_id] %>
+						<% unless @blocks.empty? %>
+							<% @blocks.each do |k,v| %>
+								<% if k.eql?(other_user.id) %>
+									<%= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do %>
+					                  <section class='container-user-chat'>
+					                      <%= get_avatar(other_user, 'chat_index') %>
+						                  <%= other_user.user.username %>
+											<section class="text-right">
+												<%= link_to 'Desbloquear', "/unblock/user/#{other_user.id}/chat",
+            										data: {confirm: 'Deseja desbloquear este contato?', turbolinks: false } %>		
+											</section>
+					                  </section>            
+					                <% end %>
+								<% end %>
+
+							<% end %>
+						
+						<% end %>
+
+					<% end %>
+				<% end %>				
+			</section>
+	<% end %>
+</div>

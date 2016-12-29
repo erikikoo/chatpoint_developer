@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  userperfils: one
+  block: false
+  user_block: MyString
+  int: MyString
+
+two:
+  userperfils: two
+  block: false
+  user_block: MyString
+  int: MyString

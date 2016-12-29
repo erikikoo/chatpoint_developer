@@ -69,7 +69,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
-gem 'redis', '~> 3.0'
+gem 'redis'
 
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
@@ -82,3 +82,6 @@ gem 'bootstrap-datepicker-rails'
 
 #jquery mask
 gem 'maskedinput-rails'
+
+#job
+gem 'whenever', :require => false

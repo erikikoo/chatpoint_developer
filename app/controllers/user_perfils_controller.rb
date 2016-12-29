@@ -10,6 +10,7 @@ class UserPerfilsController < ApplicationController
   # GET /user_perfils/1
   # GET /user_perfils/1.json
   def show
+    #@user_block = UserBlock.where(user_perfil_id: params[:other_user], user: session[:user_id])
   end
 
   # GET /user_perfils/new
@@ -26,14 +27,19 @@ class UserPerfilsController < ApplicationController
   # POST /user_perfils.json
   def create
     @user_perfil = UserPerfil.new(user_perfil_params)
-     if @user_perfil.save
-       @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])
-       session[:user_id] = @user_perfil.user.id
-       cookies.signed[:user_id] = @user_perfil.user.id
-       redirect_to "/#{session[:local_name]}/chats"
-     else
-        render :new
-     end
+     #idade = (Date.today.year - to_d(@user_perfil.nascimento.year))
+     #if idade > 17 
+       if @user_perfil.save
+         @user_perfil.inscription_in_the_establishments.create(client_id: session[:local_id])
+         session[:user_id] = @user_perfil.user.id
+         cookies.signed[:user_id] = @user_perfil.user.id
+         redirect_to "/#{session[:local_name]}/chats"
+       else
+          render :new
+       end
+      #else
+      #  flash.now[:error] = 'Você precisa ter 18+ para acessar este serviço'
+      #end 
     
   end
 
@@ -67,14 +73,33 @@ class UserPerfilsController < ApplicationController
   end
 
   def block
-     if @user_perfil.update_attribute('block', true)
-        redirect_to action: :admin 
-     end
+     _target = params[:target]     
+     _user_block = UserBlock.where(user_perfil_id: session[:user_id], user_perfil_blocked: params[:id])
+     if _user_block.empty?      
+      if UserBlock.create(user_perfil_id: session[:user_id],user_perfil_blocked: params[:id])
+         if _target.eql?('chat')
+            @user_online = UserPerfil.where(is_login: true, block: false).where.not(id: current_user)
+            redirect_to user_chats_path(session[:user_id])
+         else
+          render 'chats/index'
+         end 
+      end
+    end
   end
+  
   def unblock
-     if @user_perfil.update_attribute('block', false)        
-        redirect_to action: :admin 
-     end
+     _target = params[:target]     
+     _user_block = UserBlock.find_by(user_perfil_id: session[:user_id], user_perfil_blocked: params[:id])
+     unless _user_block.nil?      
+      if _user_block.destroy
+         if _target.eql?('chat')
+            @user_online = UserPerfil.where(is_login: true, block: false).where.not(id: current_user)
+            redirect_to user_chats_path(session[:user_id])
+         else
+          render 'chats/index'
+         end 
+      end
+    end
   end
 
   def select_user

@@ -32,10 +32,22 @@ class UsersController < ApplicationController
     end
   end
 
-  
-
-  def admin    
-   
+  def setTimeOut
+    UserPerfil.where(is_login: true).each do |user|
+        _msn = Message.where(user_id: user.id).last
+        if _msn.nil?
+          user.update_attributes(is_login: false)
+          break
+        else  
+          _time = _msn.created_at
+          _time = _time+45.minutes
+          _now = DateTime.current     
+          if _now.to_i > _time.to_i
+            user.update_attributes(is_login: false)
+            Subscription.where(user_id: user_id).update_all(active: false)
+          end 
+        end  
+    end  
   end 
 
   private

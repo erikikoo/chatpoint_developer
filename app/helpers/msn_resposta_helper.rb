@@ -1,0 +1,2 @@
+module MsnRespostaHelper
+end

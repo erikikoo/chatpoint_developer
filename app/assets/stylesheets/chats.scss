@@ -66,65 +66,7 @@ a {
       top: -45px;
       size: 2rem;
     }
-  @media (max-width: 350px){
-    .menu-dropdown {
-      position: relative;
-      left: -20px;
-      top: -45px;
-    }
-  }  
 
-  @media (max-width: 508px){
-    .menu-dropdown {
-      position: relative;
-      left: -10px;
-      top: -45px;
-    }
-    .system-notice {   
-      div:first-child {
-        left: 5vw !important;
-      }
-    }  
-  } 
-  @media (max-width: 588px){
-    .menu-dropdown {
-      position: relative;
-      left: -10px;
-      top: -45px;
-    }
-    #chat-menu {  
-      select {
-        position: relative;
-        left: -10px;
-        width: 71vw !important;       
-      }
-    } 
-  } 
-
-  @media (min-width: 589px) and (max-width: 768px){
-    .menu-dropdown {
-      position: relative;
-      left: 0px;
-      top: -45px;
-    }
-    #chat-menu {
-  
-      select {
-        position: relative;
-        left: -10px;
-        width: 71vw;
-       
-      }
-    
-    }  
-  }
-  @media (min-width: 1200px){
-    .menu-dropdown {
-      position: relative;
-      left: 100px;
-      top: -45px;
-    }
-  }  
  
  .container-user-chat {
  	  width: 100%;
@@ -140,43 +82,29 @@ a {
  }
 
 .system-notice {
-  position: fixed;
-  bottom: 0 !important;
-  background-color: rgb(238,238,238);
-  width: 100vw;  
-  height: 90px;
-  div:first-child {
-    border-radius: 100%;
-    width: 65px;
-    height: 65px;    
-    position: relative;
-    top:15px;   
-    left: 7vw;
-    text-align: center;
-    line-height: .9;
-    z-index: 2;
-    a {
+    position: fixed;
+    bottom: 0 !important;
+    background-color: rgb(238,238,238);
+    width: 100vw;  
+    height: 20vh;
+    section {
       position: relative;
-      top: 15px;
-      &:active, &:hover, &:link, &:visited {
-        color: rgba(0,0,0,0.6);
-      }
-    }    
-  }
-  div:last-child {
-    position: relative;
-    width: 80vw;    
-    top: -37px;
-    height: 50px;
-    background-color: rgba(238,238,238,0.3);
-    left: 14vw;
-    word-wrap: break-word;
-    span {
-      position: relative;      
-      left: 43px;      
+      margin-top: 10px;
     }
   }
-}
+
+  .system-notice_2 {
+    position: fixed;
+    bottom: 0 !important;
+    background-color: rgb(238,238,238);
+    width: 100vw;  
+    height: 10vh;
+    section {
+      position: relative;
+      margin-top: 10px;
+    }
+  }
+  
 
 
 
@@ -244,6 +172,11 @@ a {
  			top: 5px;		
  			color: #fff;
  		}
+    .block {
+      position: relative;
+      top: 15px;
+      float: right;      
+    }
 
  	}
  	img {
@@ -728,6 +661,13 @@ a {
   cursor: pointer;
   z-index: 99;
 }
+
+.container-user-chat {
+  section {
+    position: relative;
+    top:-36px;
+  }
+}
 #messages {
     position: relative;
     margin-bottom: 50px;    
@@ -755,3 +695,62 @@ a {
   }
 }
 
+  @media (max-width: 350px){
+    .menu-dropdown {
+      position: relative;
+      left: -20px;
+      top: -45px;
+    }
+  }  
+
+  @media (max-width: 508px){
+    .menu-dropdown {
+      position: relative;
+      left: -10px;
+      top: -45px;
+    }
+    .system-notice {   
+      height: 25vh;
+      
+    }  
+  } 
+  @media (max-width: 588px){
+    .menu-dropdown {
+      position: relative;
+      left: -10px;
+      top: -45px;
+    }
+    #chat-menu {  
+      select {
+        position: relative;
+        left: -10px;
+        width: 71vw !important;       
+      }
+    } 
+
+  } 
+
+  @media (min-width: 589px) and (max-width: 768px){
+    .menu-dropdown {
+      position: relative;
+      left: 0px;
+      top: -45px;
+    }
+    #chat-menu {
+  
+      select {
+        position: relative;
+        left: -10px;
+        width: 71vw;
+       
+      }
+    
+    }  
+  }
+  @media (min-width: 1200px){
+    .menu-dropdown {
+      position: relative;
+      left: 100px;
+      top: -45px;
+    }
+  }  

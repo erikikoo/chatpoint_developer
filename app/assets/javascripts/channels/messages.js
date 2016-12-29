@@ -24,7 +24,7 @@ function createMessageChannel() {
 				$('html, body').animate({scrollTop: cal}, 800);
 			}
 			$('html, body').css('margin-bottom', '30px');
-			return $('#messages').append(this.renderMessage(data))
+			return $('#messages').append(this.renderMessage(data));
 			
 			
 		},

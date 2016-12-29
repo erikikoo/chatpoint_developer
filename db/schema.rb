@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201160005) do
+ActiveRecord::Schema.define(version: 20161214172025) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161201160005) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.string   "title"
+    t.string   "email"
     t.index ["user_id"], name: "index_mensagems_on_user_id", using: :btree
   end
 
@@ -84,6 +85,14 @@ ActiveRecord::Schema.define(version: 20161201160005) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "active",     default: false
+  end
+
+  create_table "user_blocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_perfil_id"
+    t.integer  "user_perfil_blocked"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["user_perfil_id"], name: "index_user_blocks_on_user_perfil_id", using: :btree
   end
 
   create_table "user_perfils", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -113,5 +122,6 @@ ActiveRecord::Schema.define(version: 20161201160005) do
   add_foreign_key "inscription_in_the_establishments", "clients"
   add_foreign_key "inscription_in_the_establishments", "user_perfils"
   add_foreign_key "mensagems", "users"
+  add_foreign_key "user_blocks", "user_perfils"
   add_foreign_key "users", "user_perfils"
 end
